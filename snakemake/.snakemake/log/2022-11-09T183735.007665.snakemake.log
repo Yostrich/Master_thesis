@@ -1,0 +1,418 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+PosPeaksToBedFile                         1              1              1
+addTotalReadsToCounts                     2              1              1
+clusterReads                              2              1              1
+combineCovAndPeaks                        2              1              1
+createGenomecov                           2              1              1
+createNotebook                            1              1              1
+extractSequencesTSS                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError             10              1              1
+getPeaks                                  1              1              1
+splitOverlappingPeaks                     1              1              1
+termseqPeakCalling                        2              1              1
+total                                    27              1              1
+
+Select jobs to execute...
+
+[Wed Nov  9 18:37:35 2022]
+rule createGenomecov:
+    input: BAM_files_14-1/14-1_control_one.sorted.bam
+    output: 14-1_peak_calling/14-1_control_one.5end.plus.bedgraph
+    jobid: 13
+    reason: Missing output files: 14-1_peak_calling/14-1_control_one.5end.plus.bedgraph
+    wildcards: phage=14-1, cond=control, ident=one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:35 2022]
+Finished job 13.
+1 of 27 steps (4%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:35 2022]
+rule createGenomecov:
+    input: BAM_files_14-1/14-1_enriched_one.sorted.bam
+    output: 14-1_peak_calling/14-1_enriched_one.5end.plus.bedgraph
+    jobid: 8
+    reason: Missing output files: 14-1_peak_calling/14-1_enriched_one.5end.plus.bedgraph
+    wildcards: phage=14-1, cond=enriched, ident=one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:37 2022]
+Finished job 8.
+2 of 27 steps (7%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:37 2022]
+rule termseqPeakCalling:
+    input: 14-1_peak_calling/14-1_enriched_one.5end.plus.bedgraph
+    output: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks
+    jobid: 7
+    reason: Missing output files: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks; Input files updated by another job: 14-1_peak_calling/14-1_enriched_one.5end.plus.bedgraph
+    wildcards: phage=14-1, prefix=14-1_enriched_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:40 2022]
+Finished job 7.
+3 of 27 steps (11%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:40 2022]
+rule termseqPeakCalling:
+    input: 14-1_peak_calling/14-1_control_one.5end.plus.bedgraph
+    output: 14-1_peak_calling/14-1_control_one.5end.plus.peaks
+    jobid: 12
+    reason: Missing output files: 14-1_peak_calling/14-1_control_one.5end.plus.peaks; Input files updated by another job: 14-1_peak_calling/14-1_control_one.5end.plus.bedgraph
+    wildcards: phage=14-1, prefix=14-1_control_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:43 2022]
+Finished job 12.
+4 of 27 steps (15%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:43 2022]
+rule combineCovAndPeaks:
+    input: 14-1_peak_calling/14-1_control_one.5end.plus.peaks, 14-1_peak_calling/14-1_control_one.5end.plus.bedgraph
+    output: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts
+    jobid: 11
+    reason: Missing output files: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts; Input files updated by another job: 14-1_peak_calling/14-1_control_one.5end.plus.bedgraph, 14-1_peak_calling/14-1_control_one.5end.plus.peaks
+    wildcards: phage=14-1, prefix=14-1_control_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:43 2022]
+Finished job 11.
+5 of 27 steps (19%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:43 2022]
+rule addTotalReadsToCounts:
+    input: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts, BAM_files_14-1/14-1_control_one.sorted.bam
+    output: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 10
+    reason: Missing output files: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR; Input files updated by another job: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts
+    wildcards: phage=14-1, prefix=14-1_control_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:43 2022]
+Finished job 10.
+6 of 27 steps (22%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:43 2022]
+rule clusterReads:
+    input: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    output: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 9
+    reason: Missing output files: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv; Input files updated by another job: 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=14-1, prefix=14-1_control_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:45 2022]
+Finished job 9.
+7 of 27 steps (26%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:45 2022]
+rule combineCovAndPeaks:
+    input: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks, 14-1_peak_calling/14-1_enriched_one.5end.plus.bedgraph
+    output: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts
+    jobid: 6
+    reason: Missing output files: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts; Input files updated by another job: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks, 14-1_peak_calling/14-1_enriched_one.5end.plus.bedgraph
+    wildcards: phage=14-1, prefix=14-1_enriched_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:45 2022]
+Finished job 6.
+8 of 27 steps (30%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:45 2022]
+rule addTotalReadsToCounts:
+    input: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts, BAM_files_14-1/14-1_enriched_one.sorted.bam
+    output: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 5
+    reason: Missing output files: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR; Input files updated by another job: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts
+    wildcards: phage=14-1, prefix=14-1_enriched_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:46 2022]
+Finished job 5.
+9 of 27 steps (33%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:46 2022]
+rule clusterReads:
+    input: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    output: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 4
+    reason: Missing output files: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv; Input files updated by another job: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=14-1, prefix=14-1_enriched_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:48 2022]
+Finished job 4.
+10 of 27 steps (37%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:48 2022]
+rule getPeaks:
+    input: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    output: 14-1_one_enrichedPeaks.plus.csv, 14-1_one_controlPeaks.plus.csv
+    jobid: 16
+    reason: Missing output files: 14-1_one_enrichedPeaks.plus.csv, 14-1_one_controlPeaks.plus.csv; Input files updated by another job: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=14-1, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:48 2022]
+Finished job 16.
+11 of 27 steps (41%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:48 2022]
+rule splitOverlappingPeaks:
+    input: 14-1_one_enrichedPeaks.plus.csv, 14-1_one_controlPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks.plus.csv, 14-1_one_remainingPeaks.plus.csv
+    jobid: 15
+    reason: Missing output files: 14-1_one_remainingPeaks.plus.csv, 14-1_one_overlapping_peaks.plus.csv; Input files updated by another job: 14-1_one_controlPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:48 2022]
+Finished job 15.
+12 of 27 steps (44%) done
+Removing temporary output 14-1_one_controlPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 18:37:48 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_lower_2.plus.csv
+    jobid: 23
+    reason: Missing output files: 14-1_one_overlapping_peaks_lower_2.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=lower, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:48 2022]
+Finished job 23.
+13 of 27 steps (48%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:48 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_higher_5.plus.csv
+    jobid: 21
+    reason: Missing output files: 14-1_one_overlapping_peaks_higher_5.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=higher, error=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:48 2022]
+Finished job 21.
+14 of 27 steps (52%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:48 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_higher_3.plus.csv
+    jobid: 19
+    reason: Missing output files: 14-1_one_overlapping_peaks_higher_3.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=higher, error=3, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:48 2022]
+Finished job 19.
+15 of 27 steps (56%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_higher_1.plus.csv
+    jobid: 17
+    reason: Missing output files: 14-1_one_overlapping_peaks_higher_1.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=higher, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 17.
+16 of 27 steps (59%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_lower_5.plus.csv
+    jobid: 26
+    reason: Missing output files: 14-1_one_overlapping_peaks_lower_5.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=lower, error=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 26.
+17 of 27 steps (63%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_lower_3.plus.csv
+    jobid: 24
+    reason: Missing output files: 14-1_one_overlapping_peaks_lower_3.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=lower, error=3, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 24.
+18 of 27 steps (67%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_lower_1.plus.csv
+    jobid: 22
+    reason: Missing output files: 14-1_one_overlapping_peaks_lower_1.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=lower, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 22.
+19 of 27 steps (70%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_higher_4.plus.csv
+    jobid: 20
+    reason: Missing output files: 14-1_one_overlapping_peaks_higher_4.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=higher, error=4, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 20.
+20 of 27 steps (74%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_lower_4.plus.csv
+    jobid: 25
+    reason: Missing output files: 14-1_one_overlapping_peaks_lower_4.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=lower, error=4, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 25.
+21 of 27 steps (78%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getOverlappingPeaksWithError:
+    input: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    output: 14-1_one_overlapping_peaks_higher_2.plus.csv
+    jobid: 18
+    reason: Missing output files: 14-1_one_overlapping_peaks_higher_2.plus.csv; Input files updated by another job: 14-1_one_remainingPeaks.plus.csv, 14-1_one_enrichedPeaks.plus.csv
+    wildcards: phage=14-1, ident=one, symb=higher, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:49 2022]
+Finished job 18.
+22 of 27 steps (81%) done
+Removing temporary output 14-1_one_remainingPeaks.plus.csv.
+Removing temporary output 14-1_one_enrichedPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 18:37:49 2022]
+rule getAllOverlappingPeaks:
+    input: 14-1_one_overlapping_peaks.plus.csv, 14-1_one_overlapping_peaks_higher_1.plus.csv, 14-1_one_overlapping_peaks_higher_2.plus.csv, 14-1_one_overlapping_peaks_higher_3.plus.csv, 14-1_one_overlapping_peaks_higher_4.plus.csv, 14-1_one_overlapping_peaks_higher_5.plus.csv, 14-1_one_overlapping_peaks_lower_1.plus.csv, 14-1_one_overlapping_peaks_lower_2.plus.csv, 14-1_one_overlapping_peaks_lower_3.plus.csv, 14-1_one_overlapping_peaks_lower_4.plus.csv, 14-1_one_overlapping_peaks_lower_5.plus.csv
+    output: 14-1_one_all_overlapping_peaks.plus.csv
+    jobid: 14
+    reason: Missing output files: 14-1_one_all_overlapping_peaks.plus.csv; Input files updated by another job: 14-1_one_overlapping_peaks_lower_2.plus.csv, 14-1_one_overlapping_peaks.plus.csv, 14-1_one_overlapping_peaks_higher_2.plus.csv, 14-1_one_overlapping_peaks_higher_4.plus.csv, 14-1_one_overlapping_peaks_higher_3.plus.csv, 14-1_one_overlapping_peaks_higher_1.plus.csv, 14-1_one_overlapping_peaks_lower_3.plus.csv, 14-1_one_overlapping_peaks_lower_5.plus.csv, 14-1_one_overlapping_peaks_lower_4.plus.csv, 14-1_one_overlapping_peaks_higher_5.plus.csv, 14-1_one_overlapping_peaks_lower_1.plus.csv
+    wildcards: phage=14-1, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:50 2022]
+Finished job 14.
+23 of 27 steps (85%) done
+Removing temporary output 14-1_one_overlapping_peaks.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_higher_1.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_higher_2.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_higher_3.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_higher_4.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_higher_5.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_lower_1.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_lower_2.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_lower_3.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_lower_4.plus.csv.
+Removing temporary output 14-1_one_overlapping_peaks_lower_5.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 18:37:50 2022]
+rule getInformationFromOverlappingPeaks:
+    input: 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, 14-1_one_all_overlapping_peaks.plus.csv
+    output: TSS_14-1_one/enr_ratios_14-1_one.plus.csv
+    jobid: 3
+    reason: Missing output files: TSS_14-1_one/enr_ratios_14-1_one.plus.csv; Input files updated by another job: 14-1_one_all_overlapping_peaks.plus.csv, 14-1_peak_calling/14-1_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, 14-1_peak_calling/14-1_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=14-1, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:50 2022]
+Finished job 3.
+24 of 27 steps (89%) done
+Removing temporary output 14-1_one_all_overlapping_peaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 18:37:50 2022]
+rule PosPeaksToBedFile:
+    input: TSS_14-1_one/enr_ratios_14-1_one.plus.csv
+    output: TSS_14-1_one/14-1_enriched_one_peaks.plus.bed, TSS_14-1_one/14-1_control_one_peaks.plus.bed
+    jobid: 2
+    reason: Missing output files: TSS_14-1_one/14-1_enriched_one_peaks.plus.bed; Input files updated by another job: TSS_14-1_one/enr_ratios_14-1_one.plus.csv
+    wildcards: phage=14-1, ident=one
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:50 2022]
+Finished job 2.
+25 of 27 steps (93%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:50 2022]
+rule extractSequencesTSS:
+    input: TSS_14-1_one/14-1_enriched_one_peaks.plus.bed
+    output: TSS_14-1_one/TSS_seq_14-1_enriched_one.plus.fa.out
+    jobid: 1
+    reason: Missing output files: TSS_14-1_one/TSS_seq_14-1_enriched_one.plus.fa.out; Input files updated by another job: TSS_14-1_one/14-1_enriched_one_peaks.plus.bed
+    wildcards: phage=14-1, ident=one, cond=enriched, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:50 2022]
+Finished job 1.
+26 of 27 steps (96%) done
+Select jobs to execute...
+
+[Wed Nov  9 18:37:50 2022]
+rule createNotebook:
+    input: TSS_14-1_one/TSS_seq_14-1_enriched_one.plus.fa.out
+    output: TSS_14-1_one/structural_properties/14-1_one_curvature.plus.png, TSS_14-1_one/structural_properties/14-1_one_curvature.plus.csv, TSS_14-1_one/structural_properties/14-1_one_stability.plus.png, TSS_14-1_one/structural_properties/14-1_one_stability.plus.csv, TSS_14-1_one/structural_properties/14-1_one_bendability.plus.png, TSS_14-1_one/structural_properties/14-1_one_bendability.plus.csv
+    log: logs/notebooks/14-1_one.plus.ipynb
+    jobid: 0
+    reason: Missing output files: TSS_14-1_one/structural_properties/14-1_one_curvature.plus.png; Input files updated by another job: TSS_14-1_one/TSS_seq_14-1_enriched_one.plus.fa.out
+    wildcards: phage=14-1, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 18:37:57 2022]
+Finished job 0.
+27 of 27 steps (100%) done
+Complete log: .snakemake/log/2022-11-09T183735.007665.snakemake.log

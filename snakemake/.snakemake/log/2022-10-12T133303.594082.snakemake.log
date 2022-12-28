@@ -1,0 +1,3 @@
+SyntaxErrorin line 26 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTSS.smk:
+invalid syntax. Perhaps you forgot a comma?
+  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 3, in <module>

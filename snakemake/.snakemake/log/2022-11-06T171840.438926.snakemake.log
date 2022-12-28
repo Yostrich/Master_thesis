@@ -1,0 +1,857 @@
+Building DAG of jobs...
+candidate job all
+    wildcards: 
+candidate job createNotebook
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+candidate job extractSequencesTSS
+    wildcards: phage=PhiKZ, ident=one, cond=enriched, sign=plus
+candidate job PosPeaksToBedFile
+    wildcards: phage=PhiKZ, ident=one
+candidate job getInformationFromOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+candidate job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+candidate job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+candidate job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job samToBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job clipping
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job minimap2
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job cutadapt
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job pychopper
+    wildcards: 
+selected job pychopper
+    wildcards: 
+file pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job cutadapt
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file PhiKZ_enriched_one_cutadapt.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job minimap2
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file PhiKZ_enriched_one_minimap.sam:
+    Producer found, hence exceptions are ignored.
+
+candidate job fastaIndex
+    wildcards: 
+selected job fastaIndex
+    wildcards: 
+file phiKZ.fasta.fai:
+    Producer found, hence exceptions are ignored.
+
+selected job clipping
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file PhiKZ_enriched_one_clipped.sam:
+    Producer found, hence exceptions are ignored.
+
+selected job samToBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file PhiKZ_enriched_one.bam:
+    Producer found, hence exceptions are ignored.
+
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file BAM_files_PhiKZ/PhiKZ_enriched_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file BAM_files_PhiKZ/PhiKZ_enriched_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+candidate job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+candidate job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+candidate job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job samToBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job clipping
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job minimap2
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job cutadapt
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job pychopper
+    wildcards: 
+selected job pychopper
+    wildcards: 
+file pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job cutadapt
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file PhiKZ_control_one_cutadapt.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job minimap2
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file PhiKZ_control_one_minimap.sam:
+    Producer found, hence exceptions are ignored.
+
+candidate job fastaIndex
+    wildcards: 
+selected job fastaIndex
+    wildcards: 
+file phiKZ.fasta.fai:
+    Producer found, hence exceptions are ignored.
+
+selected job clipping
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file PhiKZ_control_one_clipped.sam:
+    Producer found, hence exceptions are ignored.
+
+selected job samToBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file PhiKZ_control_one.bam:
+    Producer found, hence exceptions are ignored.
+
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file BAM_files_PhiKZ/PhiKZ_control_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_control_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_control_one.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file BAM_files_PhiKZ/PhiKZ_control_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_control_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_control_one.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ_one, ident=all, sign=plus
+candidate job getPeaks
+    wildcards: phage=PhiKZ_one, ident=all, sign=plus
+candidate job clusterReads
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=plus
+candidate job addTotalReadsToCounts
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=plus
+candidate job combineCovAndPeaks
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=plus
+candidate job termseqPeakCalling
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=plus
+candidate job createGenomecov
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=plus
+candidate job sortBam
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job samToBam
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job clipping
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job minimap2
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job cutadapt
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job getAllOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=plus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_controlPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_overlapping_peaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=1, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=1, sign=plus
+file PhiKZ_one_overlapping_peaks_higher_1.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=2, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=2, sign=plus
+file PhiKZ_one_overlapping_peaks_higher_2.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=1, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=1, sign=plus
+file PhiKZ_one_overlapping_peaks_lower_1.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=2, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=2, sign=plus
+file PhiKZ_one_overlapping_peaks_lower_2.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getAllOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file PhiKZ_one_all_overlapping_peaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+    WorkflowError:
+        MissingInputException: Missing input files for rule cutadapt:
+            output: PhiKZ_one_enriched_all_cutadapt.fq
+            wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+            affected files:
+                pychopper_PhiKZ_one_all/PhiKZ_one_enriched_all_full_length_output.fq
+        MissingInputException: Missing input files for rule cutadapt:
+            output: BAM_files_PhiKZ_one/PhiKZ_one_enriched_all.sorted_cutadapt.fq
+            wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+            affected files:
+                pychopper_BAM_files_PhiKZ_one/PhiKZ_one_all.sorted/BAM_files_PhiKZ_one/PhiKZ_one_enriched_all.sorted_full_length_output.fq
+selected job getInformationFromOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file TSS_PhiKZ_one/enr_ratios_PhiKZ_one.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job PosPeaksToBedFile
+    wildcards: phage=PhiKZ, ident=one
+file TSS_PhiKZ_one/PhiKZ_enriched_one_peaks.plus.bed:
+    Producer found, hence exceptions are ignored.
+
+selected job extractSequencesTSS
+    wildcards: phage=PhiKZ, ident=one, cond=enriched, sign=plus
+file TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.plus.fa.out:
+    Producer found, hence exceptions are ignored.
+
+selected job createNotebook
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+file TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.plus.png:
+    Producer found, hence exceptions are ignored.
+
+candidate job createNotebook
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+candidate job extractSequencesTSS
+    wildcards: phage=PhiKZ, ident=one, cond=enriched, sign=minus
+candidate job NegPeaksToBedFile
+    wildcards: phage=PhiKZ, ident=one
+candidate job getInformationFromOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+candidate job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+candidate job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+candidate job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file BAM_files_PhiKZ/PhiKZ_enriched_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=enriched, ident=one
+file BAM_files_PhiKZ/PhiKZ_enriched_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=enriched, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_enriched_one.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+candidate job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+candidate job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+candidate job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file BAM_files_PhiKZ/PhiKZ_control_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_control_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_control_one.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+selected job createGenomecov
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+selected job sortBam
+    wildcards: phage=PhiKZ, cond=control, ident=one
+file BAM_files_PhiKZ/PhiKZ_control_one.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_PhiKZ/PhiKZ_control_one.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_PhiKZ/PhiKZ, cond=control, ident=one.sorted
+        affected files:
+            pychopper_BAM_files_PhiKZ/PhiKZ_one.sorted/BAM_files_PhiKZ/PhiKZ_control_one.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ_one, ident=all, sign=minus
+candidate job getPeaks
+    wildcards: phage=PhiKZ_one, ident=all, sign=minus
+candidate job clusterReads
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=minus
+candidate job addTotalReadsToCounts
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=minus
+candidate job combineCovAndPeaks
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=minus
+candidate job termseqPeakCalling
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=minus
+candidate job createGenomecov
+    wildcards: phage=PhiKZ_one, prefix=PhiKZ_one_enriched_all, num=5, sign=minus
+candidate job sortBam
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job samToBam
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job clipping
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job minimap2
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job cutadapt
+    wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+candidate job samToBam
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+candidate job getAllOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_enriched_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_enriched_one.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+selected job clusterReads
+    wildcards: phage=PhiKZ, prefix=PhiKZ_control_one, num=5, sign=minus
+file PhiKZ_peak_calling/PhiKZ_control_one.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_controlPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_overlapping_peaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=1, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=1, sign=minus
+file PhiKZ_one_overlapping_peaks_higher_1.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=2, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=2, sign=minus
+file PhiKZ_one_overlapping_peaks_higher_2.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=1, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=1, sign=minus
+file PhiKZ_one_overlapping_peaks_lower_1.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=2, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+selected job getPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=2, sign=minus
+file PhiKZ_one_overlapping_peaks_lower_2.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getAllOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file PhiKZ_one_all_overlapping_peaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+    WorkflowError:
+        MissingInputException: Missing input files for rule cutadapt:
+            output: PhiKZ_one_enriched_all_cutadapt.fq
+            wildcards: phage=PhiKZ_one, cond=enriched, ident=all
+            affected files:
+                pychopper_PhiKZ_one_all/PhiKZ_one_enriched_all_full_length_output.fq
+        MissingInputException: Missing input files for rule cutadapt:
+            output: BAM_files_PhiKZ_one/PhiKZ_one_enriched_all.sorted_cutadapt.fq
+            wildcards: phage=BAM_files_PhiKZ_one/PhiKZ_one, cond=enriched, ident=all.sorted
+            affected files:
+                pychopper_BAM_files_PhiKZ_one/PhiKZ_one_all.sorted/BAM_files_PhiKZ_one/PhiKZ_one_enriched_all.sorted_full_length_output.fq
+selected job getInformationFromOverlappingPeaks
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file TSS_PhiKZ_one/enr_ratios_PhiKZ_one.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job NegPeaksToBedFile
+    wildcards: phage=PhiKZ, ident=one
+file TSS_PhiKZ_one/PhiKZ_enriched_one_peaks.minus.bed:
+    Producer found, hence exceptions are ignored.
+
+selected job extractSequencesTSS
+    wildcards: phage=PhiKZ, ident=one, cond=enriched, sign=minus
+file TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.minus.fa.out:
+    Producer found, hence exceptions are ignored.
+
+selected job createNotebook
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+file TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.minus.png:
+    Producer found, hence exceptions are ignored.
+
+selected job all
+    wildcards: 
+file None:
+    Producer found, hence exceptions are ignored.
+
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+NegPeaksToBedFile                         1              1              1
+PosPeaksToBedFile                         1              1              1
+addTotalReadsToCounts                     4              1              1
+all                                       1              1              1
+clipping                                  2              1              1
+clusterReads                              4              1              1
+combineCovAndPeaks                        4              1              1
+createGenomecov                           4              1              1
+createNotebook                            2              1              1
+cutadapt                                  2              1              1
+extractSequencesTSS                       2              1              1
+getAllOverlappingPeaks                    2              1              1
+getInformationFromOverlappingPeaks        2              1              1
+getOverlappingPeaksWithError              8              1              1
+getPeaks                                  2              1              1
+minimap2                                  2              1              1
+pychopper                                 1              1              1
+samToBam                                  2              1              1
+sortBam                                   2              1              1
+splitOverlappingPeaks                     2              1              1
+termseqPeakCalling                        4              1              1
+total                                    54              1              1
+
+Select jobs to execute...
+
+[Sun Nov  6 17:18:40 2022]
+rule pychopper:
+    output: pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq, pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq
+    jobid: 15
+    reason: Missing output files: pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq, pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq
+    resources: tmpdir=/tmp
+
+Terminating processes on user request, this might take some time.
+[Sun Nov  6 17:18:43 2022]
+Error in rule pychopper:
+    jobid: 15
+    output: pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq, pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq
+    shell:
+        
+        pychopper -r pychopper_PhiKZ_one/PhiKZ_enriched_one_report.pdf testData/LUZ7_enriched.fastq pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq
+
+        pychopper -r pychopper_PhiKZ_one/PhiKZ_control_one_report.pdf testData/LUZ7_control.fastq pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: .snakemake/log/2022-11-06T171840.438926.snakemake.log

@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+pychopper        1              1              1
+test             1              1              1
+total            2              1              1
+
+Select jobs to execute...
+
+[Tue Oct  4 17:35:29 2022]
+rule pychopper:
+    output: pychopper_LUZ7_t5/LUZ7_enriched_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5/LUZ7_control_t5_full_length_output.fq
+    jobid: 1
+    reason: Missing output files: pychopper_LUZ7_t5/LUZ7_enriched_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5/LUZ7_control_t5_full_length_output.fq
+    resources: tmpdir=/tmp
+
+RuleException in rule pychopper in line 1 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/mapReads.smk:
+AttributeError: 'Wildcards' object has no attribute 'phage', when formatting the following:
+
+                cdna_classifier.py         -r pychopper_{wildcards.phage}_{wildcards.ID}/{wildcards.phage}_enriched_{wildcards.ID}/{wildcards.phage}_enriched_{wildcards.ID}_report.pdf         -u pychopper_{wildcards.phage}_{wildcards.ID}/{wildcards.phage}_enriched_{wildcards.ID}/{wildcards.phage}_enriched_{wildcards.ID}_unclassified.fq         -S pychopper_{wildcards.phage}_{wildcards.ID}/{wildcards.phage}_enriched_{wildcards.ID}/{wildcards.phage}_enriched_{wildcards.ID}_cdna_classifier_report.tsv         {params.enriched}         {output[0]}
+
+        cdna_classifier.py         -r pychopper_{wildcards.phage}_{wildcards.ID}/{wildcards.phage}_control_{wildcards.ID}/{wildcards.phage}_control_{wildcards.ID}_report.pdf         -u pychopper_{wildcards.phage}_{wildcards.ID}/{wildcards.phage}_control_{wildcards.ID}/{wildcards.phage}_control_{wildcards.ID}_unclassified.fq         -S pychopper_{wildcards.phage}_{wildcards.ID}/{wildcards.phage}_control_{wildcards.ID}/{wildcards.phage}_control_{wildcards.ID}_cdna_classifier_report.tsv         {params.control}         {output[1]}
+        

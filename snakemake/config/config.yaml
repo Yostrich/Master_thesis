@@ -1,0 +1,24 @@
+Phage name: LUZ7
+fasta file: LUZ7.fasta
+enriched fastq: testData/LUZ7_enriched.fastq
+control fastq: testData/LUZ7_control.fastq
+ID: a
+termseq alpha: 0.05
+cluster width:
+  TSS: 10
+  TTS: 20
+minimum coverage: 
+  TSS: 5
+  TTS: 30
+
+peak alignment error: 2
+TSS Threshold: 1
+TTS threshold: 0.20
+
+TSS sequence extraction:
+  upstream: 100
+  downstream: 100
+
+TTS sequence extraction:
+  upstream: 100
+  downstream: 20

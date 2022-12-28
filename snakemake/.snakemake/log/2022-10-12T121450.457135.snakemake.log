@@ -1,0 +1,72 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+all                                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError              4              1              1
+getPeaks                                  1              1              1
+splitOverlappingPeaks                     1              1              1
+total                                     9              1              1
+
+Select jobs to execute...
+
+[Wed Oct 12 12:14:50 2022]
+rule getPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    output: LUZ7_t5_enrichedPeaks.plus.csv, LUZ7_t5_controlPeaks.plus.csv
+    jobid: 27
+    reason: Missing output files: LUZ7_t5_controlPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 12:14:50 2022]
+Finished job 27.
+1 of 9 steps (11%) done
+Select jobs to execute...
+
+[Wed Oct 12 12:14:50 2022]
+rule splitOverlappingPeaks:
+    input: LUZ7_t5_enrichedPeaks.plus.csv, LUZ7_t5_controlPeaks.plus.csv
+    output: LUZ7_t5_overlappingPeaks.plus.csv, LUZ7_t5_remainingPeaks.plus.csv
+    jobid: 26
+    reason: Missing output files: LUZ7_t5_remainingPeaks.plus.csv; Input files updated by another job: LUZ7_t5_controlPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 12:14:50 2022]
+Finished job 26.
+2 of 9 steps (22%) done
+Select jobs to execute...
+
+[Wed Oct 12 12:14:51 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t5_remainingPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    output: LUZ7_t5_overlapping_peaks_higher_1.plus.csv
+    jobid: 25
+    reason: Missing output files: LUZ7_t5_overlapping_peaks_higher_1.plus.csv; Input files updated by another job: LUZ7_t5_remainingPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 12:14:51 2022]
+Error in rule getOverlappingPeaksWithError:
+    jobid: 25
+    output: LUZ7_t5_overlapping_peaks_higher_1.plus.csv
+    shell:
+        
+        errorPeaks=$(awk -F ',' '{print $1+1}' LUZ7_t5_remainingPeaks.plus.csv)
+        test=$(grep -Fx -f LUZ7_t5_enrichedPeaks.plus.csv <(echo "$errorPeaks"))
+        echo "$test"
+        
+        > LUZ7_t5_overlapping_peaks_higher_1.plus.csv
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-12T121450.457135.snakemake.log

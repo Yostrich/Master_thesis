@@ -1,0 +1,59 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                    count    min threads    max threads
+-------------------  -------  -------------  -------------
+NegPeaksToBedFile          1              1              1
+createNotebook             1              1              1
+extractSequencesTSS        1              1              1
+total                      3              1              1
+
+Select jobs to execute...
+
+[Thu Nov  3 16:31:43 2022]
+rule NegPeaksToBedFile:
+    input: TSS_LUZ7_t20/enr_ratios_LUZ7_t20.minus.csv
+    output: TSS_LUZ7_t20/LUZ7_enriched_t20_peaks.minus.bed, TSS_LUZ7_t20/LUZ7_control_t20_peaks.minus.bed
+    jobid: 2
+    reason: Missing output files: TSS_LUZ7_t20/LUZ7_enriched_t20_peaks.minus.bed; Params have changed since last execution
+    wildcards: phage=LUZ7, ident=t20
+    resources: tmpdir=/tmp
+
+[Thu Nov  3 16:31:43 2022]
+Finished job 2.
+1 of 3 steps (33%) done
+Removing temporary output TSS_LUZ7_t20/LUZ7_control_t20_peaks.minus.bed.
+Select jobs to execute...
+
+[Thu Nov  3 16:31:43 2022]
+rule extractSequencesTSS:
+    input: TSS_LUZ7_t20/LUZ7_enriched_t20_peaks.minus.bed
+    output: TSS_LUZ7_t20/TSS_seq_LUZ7_enriched_t20.minus.fa.out
+    jobid: 1
+    reason: Input files updated by another job: TSS_LUZ7_t20/LUZ7_enriched_t20_peaks.minus.bed
+    wildcards: phage=LUZ7, ident=t20, cond=enriched, sign=minus
+    resources: tmpdir=/tmp
+
+[Thu Nov  3 16:31:43 2022]
+Finished job 1.
+2 of 3 steps (67%) done
+Removing temporary output TSS_LUZ7_t20/LUZ7_enriched_t20_peaks.minus.bed.
+Select jobs to execute...
+
+[Thu Nov  3 16:31:43 2022]
+rule createNotebook:
+    input: TSS_LUZ7_t20/TSS_seq_LUZ7_enriched_t20.minus.fa.out
+    output: TSS_LUZ7_t20/structural_properties/LUZ7_t20_curvature.minus.png, TSS_LUZ7_t20/structural_properties/LUZ7_t20_curvature.minus.csv, TSS_LUZ7_t20/structural_properties/LUZ7_t20_stability.minus.png, TSS_LUZ7_t20/structural_properties/LUZ7_t20_stability.minus.csv, TSS_LUZ7_t20/structural_properties/LUZ7_t20_bendability.minus.png, TSS_LUZ7_t20/structural_properties/LUZ7_t20_bendability.minus.csv
+    log: logs/notebooks/LUZ7_t20.minus.ipynb
+    jobid: 0
+    reason: Input files updated by another job: TSS_LUZ7_t20/TSS_seq_LUZ7_enriched_t20.minus.fa.out
+    wildcards: phage=LUZ7, ident=t20, sign=minus
+    resources: tmpdir=/tmp
+
+[Thu Nov  3 16:31:58 2022]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2022-11-03T163143.240401.snakemake.log

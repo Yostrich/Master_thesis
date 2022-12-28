@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                    count    min threads    max threads
+-------------------  -------  -------------  -------------
+all                        1              1              1
+getEnrichmentRatios        1              1              1
+total                      2              1              1
+
+Select jobs to execute...
+
+[Thu Oct  6 00:20:11 2022]
+rule getEnrichmentRatios:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    output: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    jobid: 1
+    reason: Missing output files: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Thu Oct  6 00:20:11 2022]
+Finished job 1.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Thu Oct  6 00:20:11 2022]
+localrule all:
+    input: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    jobid: 0
+    reason: Input files updated by another job: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    resources: tmpdir=/tmp
+
+[Thu Oct  6 00:20:11 2022]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2022-10-06T002010.926142.snakemake.log

@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+addTotalReadsToCounts        2              1              1
+all                          1              1              1
+total                        3              1              1
+
+Select jobs to execute...
+
+[Sun Oct  2 01:39:34 2022]
+rule addTotalReadsToCounts:
+    input: LUZ7_peak_calling/t5_enriched-LUZ7.5end.plus.peaks.oracle.narrowPeak.counts, BAM_files_LUZ7/t5_enriched-LUZ7.sorted.bam
+    output: LUZ7_peak_calling/t5_enriched-LUZ7.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 1
+    reason: Missing output files: LUZ7_peak_calling/t5_enriched-LUZ7.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=LUZ7, prefix=t5_enriched-LUZ7, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Oct  2 01:39:34 2022]
+Error in rule addTotalReadsToCounts:
+    jobid: 1
+    output: LUZ7_peak_calling/t5_enriched-LUZ7.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    shell:
+        
+        total_mapped=\$ (samtools view -c -F4 BAM_files_LUZ7/t5_enriched-LUZ7.sorted.bam)
+        awk "{print \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8 , \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$total_mapped}"         LUZ7_peak_calling/t5_enriched-LUZ7.5end.plus.peaks.oracle.narrowPeak.counts > [output]
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-02T013933.771754.snakemake.log

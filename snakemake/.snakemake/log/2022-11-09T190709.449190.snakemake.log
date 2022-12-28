@@ -1,0 +1,12 @@
+Building DAG of jobs...
+WorkflowError:
+MissingInputException: Missing input files for rule cutadapt:
+    output: PAK_P3_enriched_one_cutadapt.fq
+    wildcards: phage=PAK_P3, cond=enriched, ident=one
+    affected files:
+        pychopper_PAK_P3_one/PAK_P3_enriched_one_full_length_output.fq
+MissingInputException: Missing input files for rule cutadapt:
+    output: BAM_files_PAK_P3/PAK_P3_enriched_one.sorted_cutadapt.fq
+    wildcards: phage=BAM_files_PAK_P3/PAK_P3, cond=enriched, ident=one.sorted
+    affected files:
+        pychopper_BAM_files_PAK_P3/PAK_P3_one.sorted/BAM_files_PAK_P3/PAK_P3_enriched_one.sorted_full_length_output.fq

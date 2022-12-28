@@ -1,0 +1,30 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+addTotalReadsToCounts        2              1              1
+all                          1              1              1
+total                        3              1              1
+
+Select jobs to execute...
+
+[Sun Oct  2 01:34:01 2022]
+rule addTotalReadsToCounts:
+    input: LUZ7_peak_calling/t5_enriched-LUZ7.5end.minus.peaks.oracle.narrowPeak.counts, BAM_files_LUZ7/t5_enriched-LUZ7.sorted.bam
+    output: LUZ7_peak_calling/t5_enriched-LUZ7.5end.minus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 5
+    reason: Missing output files: LUZ7_peak_calling/t5_enriched-LUZ7.5end.minus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=LUZ7, prefix=t5_enriched-LUZ7, num=5, sign=minus
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in rule addTotalReadsToCounts in line 39 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk:
+Job Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+LUZ7_peak_calling/t5_enriched-LUZ7.5end.minus.peaks.oracle.narrowPeak.counts.withTR completed successfully, but some output files are missing. 5
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-02T013401.591218.snakemake.log

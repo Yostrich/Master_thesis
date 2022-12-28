@@ -1,0 +1,11 @@
+configfile: './config/config.yaml'
+include: 'rules/mapReads.smk'
+include: 'rules/annotateTSS.smk'
+include: 'rules/annotateTTS.smk'
+include: 'rules/determineTranscriptionBoundries.smk'
+include: 'rules/notebookStructuralProperties.smk'
+
+rule all:
+    input: 
+        expand("TSS_{phage}_{ident}/structural_properties/{phage}_{ident}_curvature.{sign}.png",
+        phage=config["Phage name"], ident=config["ID"], sign=["plus", "minus"])

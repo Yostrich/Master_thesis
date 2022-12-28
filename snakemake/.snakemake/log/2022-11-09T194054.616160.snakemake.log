@@ -1,0 +1,212 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+PosPeaksToBedFile                         1              1              1
+clusterReads                              2              1              1
+createNotebook                            1              1              1
+extractSequencesTSS                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError              4              1              1
+getPeaks                                  1              1              1
+splitOverlappingPeaks                     1              1              1
+total                                    13              1              1
+
+Select jobs to execute...
+
+[Wed Nov  9 19:40:58 2022]
+rule clusterReads:
+    input: LUZ100_peak_calling/LUZ100_control_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    output: LUZ100_peak_calling/LUZ100_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 9
+    reason: Params have changed since last execution
+    wildcards: phage=LUZ100, prefix=LUZ100_control_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:00 2022]
+Finished job 9.
+1 of 13 steps (8%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:00 2022]
+rule clusterReads:
+    input: LUZ100_peak_calling/LUZ100_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    output: LUZ100_peak_calling/LUZ100_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 4
+    reason: Params have changed since last execution
+    wildcards: phage=LUZ100, prefix=LUZ100_enriched_one, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:02 2022]
+Finished job 4.
+2 of 13 steps (15%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:02 2022]
+rule getPeaks:
+    input: LUZ100_peak_calling/LUZ100_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ100_peak_calling/LUZ100_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    output: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_controlPeaks.plus.csv
+    jobid: 16
+    reason: Missing output files: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_controlPeaks.plus.csv; Input files updated by another job: LUZ100_peak_calling/LUZ100_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ100_peak_calling/LUZ100_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=LUZ100, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:02 2022]
+Finished job 16.
+3 of 13 steps (23%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:02 2022]
+rule splitOverlappingPeaks:
+    input: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_controlPeaks.plus.csv
+    output: LUZ100_one_overlapping_peaks.plus.csv, LUZ100_one_remainingPeaks.plus.csv
+    jobid: 15
+    reason: Missing output files: LUZ100_one_overlapping_peaks.plus.csv, LUZ100_one_remainingPeaks.plus.csv; Input files updated by another job: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_controlPeaks.plus.csv
+    wildcards: phage=LUZ100, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:02 2022]
+Finished job 15.
+4 of 13 steps (31%) done
+Removing temporary output LUZ100_one_controlPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:41:02 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ100_one_remainingPeaks.plus.csv, LUZ100_one_enrichedPeaks.plus.csv
+    output: LUZ100_one_overlapping_peaks_lower_2.plus.csv
+    jobid: 20
+    reason: Missing output files: LUZ100_one_overlapping_peaks_lower_2.plus.csv; Input files updated by another job: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ100, ident=one, symb=lower, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:02 2022]
+Finished job 20.
+5 of 13 steps (38%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:02 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ100_one_remainingPeaks.plus.csv, LUZ100_one_enrichedPeaks.plus.csv
+    output: LUZ100_one_overlapping_peaks_lower_1.plus.csv
+    jobid: 19
+    reason: Missing output files: LUZ100_one_overlapping_peaks_lower_1.plus.csv; Input files updated by another job: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ100, ident=one, symb=lower, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:02 2022]
+Finished job 19.
+6 of 13 steps (46%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:02 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ100_one_remainingPeaks.plus.csv, LUZ100_one_enrichedPeaks.plus.csv
+    output: LUZ100_one_overlapping_peaks_higher_1.plus.csv
+    jobid: 17
+    reason: Missing output files: LUZ100_one_overlapping_peaks_higher_1.plus.csv; Input files updated by another job: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ100, ident=one, symb=higher, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:03 2022]
+Finished job 17.
+7 of 13 steps (54%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:03 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ100_one_remainingPeaks.plus.csv, LUZ100_one_enrichedPeaks.plus.csv
+    output: LUZ100_one_overlapping_peaks_higher_2.plus.csv
+    jobid: 18
+    reason: Missing output files: LUZ100_one_overlapping_peaks_higher_2.plus.csv; Input files updated by another job: LUZ100_one_enrichedPeaks.plus.csv, LUZ100_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ100, ident=one, symb=higher, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:03 2022]
+Finished job 18.
+8 of 13 steps (62%) done
+Removing temporary output LUZ100_one_remainingPeaks.plus.csv.
+Removing temporary output LUZ100_one_enrichedPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:41:03 2022]
+rule getAllOverlappingPeaks:
+    input: LUZ100_one_overlapping_peaks.plus.csv, LUZ100_one_overlapping_peaks_higher_1.plus.csv, LUZ100_one_overlapping_peaks_higher_2.plus.csv, LUZ100_one_overlapping_peaks_lower_1.plus.csv, LUZ100_one_overlapping_peaks_lower_2.plus.csv
+    output: LUZ100_one_all_overlapping_peaks.plus.csv
+    jobid: 14
+    reason: Missing output files: LUZ100_one_all_overlapping_peaks.plus.csv; Input files updated by another job: LUZ100_one_overlapping_peaks_lower_2.plus.csv, LUZ100_one_overlapping_peaks_lower_1.plus.csv, LUZ100_one_overlapping_peaks_higher_1.plus.csv, LUZ100_one_overlapping_peaks_higher_2.plus.csv, LUZ100_one_overlapping_peaks.plus.csv
+    wildcards: phage=LUZ100, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:03 2022]
+Finished job 14.
+9 of 13 steps (69%) done
+Removing temporary output LUZ100_one_overlapping_peaks.plus.csv.
+Removing temporary output LUZ100_one_overlapping_peaks_higher_1.plus.csv.
+Removing temporary output LUZ100_one_overlapping_peaks_higher_2.plus.csv.
+Removing temporary output LUZ100_one_overlapping_peaks_lower_1.plus.csv.
+Removing temporary output LUZ100_one_overlapping_peaks_lower_2.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:41:03 2022]
+rule getInformationFromOverlappingPeaks:
+    input: LUZ100_peak_calling/LUZ100_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ100_peak_calling/LUZ100_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ100_one_all_overlapping_peaks.plus.csv
+    output: TSS_LUZ100_one/enr_ratios_LUZ100_one.plus.csv
+    jobid: 3
+    reason: Input files updated by another job: LUZ100_one_all_overlapping_peaks.plus.csv, LUZ100_peak_calling/LUZ100_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ100_peak_calling/LUZ100_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=LUZ100, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:04 2022]
+Finished job 3.
+10 of 13 steps (77%) done
+Removing temporary output LUZ100_one_all_overlapping_peaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:41:04 2022]
+rule PosPeaksToBedFile:
+    input: TSS_LUZ100_one/enr_ratios_LUZ100_one.plus.csv
+    output: TSS_LUZ100_one/LUZ100_enriched_one_peaks.plus.bed, TSS_LUZ100_one/LUZ100_control_one_peaks.plus.bed
+    jobid: 2
+    reason: Input files updated by another job: TSS_LUZ100_one/enr_ratios_LUZ100_one.plus.csv
+    wildcards: phage=LUZ100, ident=one
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:04 2022]
+Finished job 2.
+11 of 13 steps (85%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:04 2022]
+rule extractSequencesTSS:
+    input: TSS_LUZ100_one/LUZ100_enriched_one_peaks.plus.bed
+    output: TSS_LUZ100_one/TSS_seq_LUZ100_enriched_one.plus.fa.out
+    jobid: 1
+    reason: Input files updated by another job: TSS_LUZ100_one/LUZ100_enriched_one_peaks.plus.bed
+    wildcards: phage=LUZ100, ident=one, cond=enriched, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:04 2022]
+Finished job 1.
+12 of 13 steps (92%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:41:04 2022]
+rule createNotebook:
+    input: TSS_LUZ100_one/TSS_seq_LUZ100_enriched_one.plus.fa.out
+    output: TSS_LUZ100_one/structural_properties/LUZ100_one_curvature.plus.png, TSS_LUZ100_one/structural_properties/LUZ100_one_curvature.plus.csv, TSS_LUZ100_one/structural_properties/LUZ100_one_stability.plus.png, TSS_LUZ100_one/structural_properties/LUZ100_one_stability.plus.csv, TSS_LUZ100_one/structural_properties/LUZ100_one_bendability.plus.png, TSS_LUZ100_one/structural_properties/LUZ100_one_bendability.plus.csv
+    log: logs/notebooks/LUZ100_one.plus.ipynb
+    jobid: 0
+    reason: Input files updated by another job: TSS_LUZ100_one/TSS_seq_LUZ100_enriched_one.plus.fa.out
+    wildcards: phage=LUZ100, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:41:27 2022]
+Finished job 0.
+13 of 13 steps (100%) done
+Complete log: .snakemake/log/2022-11-09T194054.616160.snakemake.log

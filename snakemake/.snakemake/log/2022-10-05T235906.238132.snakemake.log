@@ -1,0 +1,83 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+addTotalReadsToCounts        2              1              1
+all                          1              1              1
+clipping                     2              1              1
+clusterReads                 2              1              1
+combineCovAndPeaks           2              1              1
+createGenomecov              2              1              1
+cutadapt                     1              1              1
+getEnrichmentRatios          1              1              1
+minimap2                     1              1              1
+samToBam                     2              1              1
+sortBam                      2              1              1
+termseqPeakCalling           2              1              1
+total                       20              1              1
+
+Select jobs to execute...
+
+[Wed Oct  5 23:59:06 2022]
+rule cutadapt:
+    input: pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+    output: LUZ7_control_t5_cutadapt.fq
+    jobid: 23
+    reason: Missing output files: LUZ7_control_t5_cutadapt.fq
+    wildcards: phage=LUZ7, cond=control, ident=t5
+    resources: tmpdir=/tmp
+
+[Wed Oct  5 23:59:17 2022]
+Finished job 23.
+1 of 20 steps (5%) done
+Select jobs to execute...
+
+[Wed Oct  5 23:59:17 2022]
+rule clipping:
+    input: LUZ7_enriched_t5_minimap.sam, LUZ7.fasta.fai
+    output: LUZ7_enriched_t5_clipped.sam
+    jobid: 9
+    reason: Missing output files: LUZ7_enriched_t5_clipped.sam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+    resources: tmpdir=/tmp
+
+[Wed Oct  5 23:59:18 2022]
+Finished job 9.
+2 of 20 steps (10%) done
+Select jobs to execute...
+
+[Wed Oct  5 23:59:18 2022]
+rule samToBam:
+    input: LUZ7_enriched_t5_clipped.sam
+    output: LUZ7_enriched_t5.bam
+    jobid: 8
+    reason: Missing output files: LUZ7_enriched_t5.bam; Input files updated by another job: LUZ7_enriched_t5_clipped.sam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+    resources: tmpdir=/tmp
+
+[Wed Oct  5 23:59:19 2022]
+Finished job 8.
+3 of 20 steps (15%) done
+Removing temporary output LUZ7_enriched_t5_clipped.sam.
+Select jobs to execute...
+
+[Wed Oct  5 23:59:19 2022]
+rule sortBam:
+    input: LUZ7_enriched_t5.bam
+    output: BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam
+    jobid: 7
+    reason: Missing output files: BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam; Input files updated by another job: LUZ7_enriched_t5.bam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+    resources: tmpdir=/tmp
+
+[Wed Oct  5 23:59:20 2022]
+Finished job 7.
+4 of 20 steps (20%) done
+Removing temporary output LUZ7_enriched_t5.bam.
+Select jobs to execute...
+Terminating processes on user request, this might take some time.
+Complete log: .snakemake/log/2022-10-05T235906.238132.snakemake.log

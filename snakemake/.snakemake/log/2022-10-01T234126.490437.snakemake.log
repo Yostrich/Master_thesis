@@ -1,0 +1,7 @@
+Building DAG of jobs...
+MissingInputException in rule createGenomecov in line 1 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk:
+Missing input files for rule createGenomecov:
+    output: LUZ7_peak_calling/t5_enriched-LUZ7.5.plus.bedgraphLUZ7_peak_calling/t5_enriched-LUZ7.5.plus.bedgraph, LUZ7_peak_calling/t5_enriched-LUZ7.5.plus.bedgraphLUZ7_peak_calling/t5_enriched-LUZ7.5.minus.bedgraph
+    wildcards: prefix=t5_enriched-LUZ7.5.plus.bedgraphLUZ7_peak_calling/t5_enriched-LUZ7
+    affected files:
+        BAM_files_LUZ7/t5_enriched-LUZ7.5.plus.bedgraphLUZ7_peak_calling/t5_enriched-LUZ7.sorted.bam

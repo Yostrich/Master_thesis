@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+PosEffRatios                 1              1              1
+addTotalReadsToCounts        1              1              1
+clusterReads                 1              1              1
+combineCovAndPeaks           1              1              1
+createGenomecov              1              1              1
+getGenomeFile                1              1              1
+termseqPeakCalling           1              1              1
+total                        7              1              1
+
+Select jobs to execute...
+
+[Fri Oct 14 12:58:13 2022]
+rule getGenomeFile:
+    input: LUZ7.fasta.fai
+    output: LUZ7_genome.txt
+    jobid: 13
+    reason: Missing output files: LUZ7_genome.txt
+    wildcards: phage=LUZ7
+    resources: tmpdir=/tmp
+
+RuleException in rule getGenomeFile in line 1 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTTS.smk:
+NameError: The name "'print $1,$2'" is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}, when formatting the following:
+
+            awk -v OFS='	' {'print $1,$2'} {input} > {output}
+        

@@ -1,0 +1,29 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+PosEffRatios        1              1              1
+total               1              1              1
+
+Select jobs to execute...
+
+[Fri Oct 14 12:59:39 2022]
+rule PosEffRatios:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.3end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_genome.txt, BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam
+    output: LUZ7_t5_test.txt
+    jobid: 0
+    reason: Missing output files: LUZ7_t5_test.txt
+    wildcards: phage=LUZ7, ident=t5
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in rule PosEffRatios in line 8 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTTS.smk:
+Job Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+LUZ7_t5_test.txt completed successfully, but some output files are missing. 0
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-14T125939.221009.snakemake.log

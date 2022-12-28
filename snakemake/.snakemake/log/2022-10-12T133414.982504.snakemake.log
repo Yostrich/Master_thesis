@@ -1,0 +1,7 @@
+Building DAG of jobs...
+MissingInputException in rule getInformationFromOverlappingPeaks in line 44 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTSS.smk:
+Missing input files for rule getInformationFromOverlappingPeaks:
+    output: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    affected files:
+        LUZ7_t5_allOverlappingPeaks.plus.csv

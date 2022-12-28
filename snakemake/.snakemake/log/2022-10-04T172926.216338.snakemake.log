@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardErrorin line 22 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/mapReads.smk:
+Wildcards in input files cannot be determined from output files:
+'pychopper_out'

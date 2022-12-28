@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job         count    min threads    max threads
+--------  -------  -------------  -------------
+minimap2        1              1              1
+total           1              1              1
+
+Select jobs to execute...
+
+[Tue Oct  4 23:48:09 2022]
+rule minimap2:
+    input: LUZ7_enriched_t5_cutadapt.fq
+    output: LUZ7_enriched_t5_minimap.sam
+    jobid: 0
+    reason: Missing output files: LUZ7_enriched_t5_minimap.sam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+    resources: tmpdir=/tmp
+
+[Tue Oct  4 23:48:10 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2022-10-04T234808.998391.snakemake.log

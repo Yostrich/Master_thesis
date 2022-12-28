@@ -1,0 +1,857 @@
+Building DAG of jobs...
+candidate job all
+    wildcards: 
+candidate job createNotebook
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+candidate job extractSequencesTSS
+    wildcards: phage=LUZ7, ident=t5, cond=enriched, sign=plus
+candidate job PosPeaksToBedFile
+    wildcards: phage=LUZ7, ident=t5
+candidate job getInformationFromOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+candidate job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+candidate job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+candidate job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+candidate job samToBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+candidate job clipping
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+candidate job minimap2
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+candidate job cutadapt
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+candidate job pychopper
+    wildcards: 
+selected job pychopper
+    wildcards: 
+file pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job cutadapt
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file LUZ7_enriched_t5_cutadapt.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job minimap2
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file LUZ7_enriched_t5_minimap.sam:
+    Producer found, hence exceptions are ignored.
+
+candidate job fastaIndex
+    wildcards: 
+selected job fastaIndex
+    wildcards: 
+file phiKZ.fasta.fai:
+    Producer found, hence exceptions are ignored.
+
+selected job clipping
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file LUZ7_enriched_t5_clipped.sam:
+    Producer found, hence exceptions are ignored.
+
+selected job samToBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file LUZ7_enriched_t5.bam:
+    Producer found, hence exceptions are ignored.
+
+selected job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_enriched_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_enriched_t5.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+selected job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_enriched_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_enriched_t5.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+candidate job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+candidate job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+candidate job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+candidate job samToBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+candidate job clipping
+    wildcards: phage=LUZ7, cond=control, ident=t5
+candidate job minimap2
+    wildcards: phage=LUZ7, cond=control, ident=t5
+candidate job cutadapt
+    wildcards: phage=LUZ7, cond=control, ident=t5
+candidate job pychopper
+    wildcards: 
+selected job pychopper
+    wildcards: 
+file pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job cutadapt
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file LUZ7_control_t5_cutadapt.fq:
+    Producer found, hence exceptions are ignored.
+
+selected job minimap2
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file LUZ7_control_t5_minimap.sam:
+    Producer found, hence exceptions are ignored.
+
+candidate job fastaIndex
+    wildcards: 
+selected job fastaIndex
+    wildcards: 
+file phiKZ.fasta.fai:
+    Producer found, hence exceptions are ignored.
+
+selected job clipping
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file LUZ7_control_t5_clipped.sam:
+    Producer found, hence exceptions are ignored.
+
+selected job samToBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file LUZ7_control_t5.bam:
+    Producer found, hence exceptions are ignored.
+
+selected job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file BAM_files_LUZ7/LUZ7_control_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_control_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_control_t5.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+selected job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file BAM_files_LUZ7/LUZ7_control_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_control_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_control_t5.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7_t5, ident=all, sign=plus
+candidate job getPeaks
+    wildcards: phage=LUZ7_t5, ident=all, sign=plus
+candidate job clusterReads
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=plus
+candidate job addTotalReadsToCounts
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=plus
+candidate job combineCovAndPeaks
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=plus
+candidate job termseqPeakCalling
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=plus
+candidate job createGenomecov
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=plus
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job samToBam
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job clipping
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job minimap2
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job cutadapt
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job getAllOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=plus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_controlPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_overlapping_peaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=1, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=1, sign=plus
+file LUZ7_t5_overlapping_peaks_higher_1.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=2, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=2, sign=plus
+file LUZ7_t5_overlapping_peaks_higher_2.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=1, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=1, sign=plus
+file LUZ7_t5_overlapping_peaks_lower_1.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=2, sign=plus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_remainingPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_enrichedPeaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=2, sign=plus
+file LUZ7_t5_overlapping_peaks_lower_2.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getAllOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file LUZ7_t5_all_overlapping_peaks.plus.csv:
+    Producer found, hence exceptions are ignored.
+    WorkflowError:
+        MissingInputException: Missing input files for rule cutadapt:
+            output: BAM_files_LUZ7_t5/LUZ7_t5_enriched_all.sorted_cutadapt.fq
+            wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+            affected files:
+                pychopper_BAM_files_LUZ7_t5/LUZ7_t5_all.sorted/BAM_files_LUZ7_t5/LUZ7_t5_enriched_all.sorted_full_length_output.fq
+        MissingInputException: Missing input files for rule cutadapt:
+            output: LUZ7_t5_enriched_all_cutadapt.fq
+            wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+            affected files:
+                pychopper_LUZ7_t5_all/LUZ7_t5_enriched_all_full_length_output.fq
+selected job getInformationFromOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file TSS_LUZ7_t5/enr_ratios_LUZ7_t5.plus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job PosPeaksToBedFile
+    wildcards: phage=LUZ7, ident=t5
+file TSS_LUZ7_t5/LUZ7_enriched_t5_peaks.plus.bed:
+    Producer found, hence exceptions are ignored.
+
+selected job extractSequencesTSS
+    wildcards: phage=LUZ7, ident=t5, cond=enriched, sign=plus
+file TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.plus.fa.out:
+    Producer found, hence exceptions are ignored.
+
+selected job createNotebook
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+file TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png:
+    Producer found, hence exceptions are ignored.
+
+candidate job createNotebook
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+candidate job extractSequencesTSS
+    wildcards: phage=LUZ7, ident=t5, cond=enriched, sign=minus
+candidate job NegPeaksToBedFile
+    wildcards: phage=LUZ7, ident=t5
+candidate job getInformationFromOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+candidate job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+candidate job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+candidate job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+selected job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_enriched_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_enriched_t5.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+selected job sortBam
+    wildcards: phage=LUZ7, cond=enriched, ident=t5
+file BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_enriched_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=enriched, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_enriched_t5.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+candidate job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+candidate job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+candidate job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+selected job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file BAM_files_LUZ7/LUZ7_control_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_control_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_control_t5.sorted_full_length_output.fq
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job termseqPeakCalling
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.peaks:
+    Producer found, hence exceptions are ignored.
+
+candidate job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+selected job createGenomecov
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.bedgraph:
+    Producer found, hence exceptions are ignored.
+
+selected job combineCovAndPeaks
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.peaks.oracle.narrowPeak.counts:
+    Producer found, hence exceptions are ignored.
+
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+selected job sortBam
+    wildcards: phage=LUZ7, cond=control, ident=t5
+file BAM_files_LUZ7/LUZ7_control_t5.sorted.bam:
+    Producer found, hence exceptions are ignored.
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7/LUZ7_control_t5.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7/LUZ7, cond=control, ident=t5.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7/LUZ7_t5.sorted/BAM_files_LUZ7/LUZ7_control_t5.sorted_full_length_output.fq
+selected job addTotalReadsToCounts
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.peaks.oracle.narrowPeak.counts.withTR:
+    Producer found, hence exceptions are ignored.
+
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7_t5, ident=all, sign=minus
+candidate job getPeaks
+    wildcards: phage=LUZ7_t5, ident=all, sign=minus
+candidate job clusterReads
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=minus
+candidate job addTotalReadsToCounts
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=minus
+candidate job combineCovAndPeaks
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=minus
+candidate job termseqPeakCalling
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=minus
+candidate job createGenomecov
+    wildcards: phage=LUZ7_t5, prefix=LUZ7_t5_enriched_all, num=5, sign=minus
+candidate job samToBam
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job clipping
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job minimap2
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job cutadapt
+    wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+candidate job sortBam
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job samToBam
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job clipping
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job minimap2
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job cutadapt
+    wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+candidate job getAllOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_enriched_t5.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+selected job clusterReads
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t5, num=5, sign=minus
+file LUZ7_peak_calling/LUZ7_control_t5.5end.minus.peaks.oracle.narrowPeak.counts.clustered.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_controlPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_overlapping_peaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=1, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=1, sign=minus
+file LUZ7_t5_overlapping_peaks_higher_1.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=2, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=higher, error=2, sign=minus
+file LUZ7_t5_overlapping_peaks_higher_2.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=1, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=1, sign=minus
+file LUZ7_t5_overlapping_peaks_lower_1.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=2, sign=minus
+candidate job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job splitOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_remainingPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+candidate job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+selected job getPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_enrichedPeaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getOverlappingPeaksWithError
+    wildcards: phage=LUZ7, ident=t5, symb=lower, error=2, sign=minus
+file LUZ7_t5_overlapping_peaks_lower_2.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job getAllOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file LUZ7_t5_all_overlapping_peaks.minus.csv:
+    Producer found, hence exceptions are ignored.
+    WorkflowError:
+        MissingInputException: Missing input files for rule cutadapt:
+            output: BAM_files_LUZ7_t5/LUZ7_t5_enriched_all.sorted_cutadapt.fq
+            wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+            affected files:
+                pychopper_BAM_files_LUZ7_t5/LUZ7_t5_all.sorted/BAM_files_LUZ7_t5/LUZ7_t5_enriched_all.sorted_full_length_output.fq
+        MissingInputException: Missing input files for rule cutadapt:
+            output: LUZ7_t5_enriched_all_cutadapt.fq
+            wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+            affected files:
+                pychopper_LUZ7_t5_all/LUZ7_t5_enriched_all_full_length_output.fq
+selected job getInformationFromOverlappingPeaks
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file TSS_LUZ7_t5/enr_ratios_LUZ7_t5.minus.csv:
+    Producer found, hence exceptions are ignored.
+
+selected job NegPeaksToBedFile
+    wildcards: phage=LUZ7, ident=t5
+file TSS_LUZ7_t5/LUZ7_enriched_t5_peaks.minus.bed:
+    Producer found, hence exceptions are ignored.
+
+selected job extractSequencesTSS
+    wildcards: phage=LUZ7, ident=t5, cond=enriched, sign=minus
+file TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.minus.fa.out:
+    Producer found, hence exceptions are ignored.
+
+selected job createNotebook
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+file TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.minus.png:
+    Producer found, hence exceptions are ignored.
+
+selected job all
+    wildcards: 
+file None:
+    Producer found, hence exceptions are ignored.
+
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+NegPeaksToBedFile                         1              1              1
+PosPeaksToBedFile                         1              1              1
+addTotalReadsToCounts                     4              1              1
+all                                       1              1              1
+clipping                                  2              1              1
+clusterReads                              4              1              1
+combineCovAndPeaks                        4              1              1
+createGenomecov                           4              1              1
+createNotebook                            2              1              1
+cutadapt                                  2              1              1
+extractSequencesTSS                       2              1              1
+getAllOverlappingPeaks                    2              1              1
+getInformationFromOverlappingPeaks        2              1              1
+getOverlappingPeaksWithError              8              1              1
+getPeaks                                  2              1              1
+minimap2                                  2              1              1
+pychopper                                 1              1              1
+samToBam                                  2              1              1
+sortBam                                   2              1              1
+splitOverlappingPeaks                     2              1              1
+termseqPeakCalling                        4              1              1
+total                                    54              1              1
+
+Select jobs to execute...
+
+[Sun Nov  6 16:16:30 2022]
+rule pychopper:
+    output: pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+    jobid: 15
+    reason: Missing output files: pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+    resources: tmpdir=/tmp
+
+Terminating processes on user request, this might take some time.
+[Sun Nov  6 16:16:33 2022]
+Error in rule pychopper:
+    jobid: 15
+    output: pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+    shell:
+        
+        pychopper -r pychopper_LUZ7_t5/LUZ7_enriched_t5_report.pdf testData/LUZ7_enriched.fastq pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq
+
+        pychopper -r pychopper_LUZ7_t5/LUZ7_control_t5_report.pdf testData/LUZ7_control.fastq pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: .snakemake/log/2022-11-06T161630.044576.snakemake.log

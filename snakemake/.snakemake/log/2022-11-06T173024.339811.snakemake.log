@@ -1,0 +1,3 @@
+Building DAG of jobs...
+MissingRuleException:
+No rule to produce TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.pngd (if you use input functions make sure that they don't raise unexpected exceptions).

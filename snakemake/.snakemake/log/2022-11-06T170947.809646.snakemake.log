@@ -1,0 +1,330 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+PosPeaksToBedFile                         1              1              1
+addTotalReadsToCounts                     2              1              1
+clusterReads                              2              1              1
+combineCovAndPeaks                        2              1              1
+createGenomecov                           2              1              1
+createNotebook                            1              1              1
+extractSequencesTSS                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError              4              1              1
+getPeaks                                  1              1              1
+splitOverlappingPeaks                     1              1              1
+termseqPeakCalling                        2              1              1
+total                                    21              1              1
+
+Select jobs to execute...
+
+[Sun Nov  6 17:09:48 2022]
+rule createGenomecov:
+    input: BAM_files_LUZ7/LUZ7_control_t10.sorted.bam
+    output: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.bedgraph
+    jobid: 13
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.bedgraph; Code has changed since last execution
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:09:49 2022]
+Finished job 13.
+1 of 21 steps (5%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:09:49 2022]
+rule createGenomecov:
+    input: BAM_files_LUZ7/LUZ7_enriched_t10.sorted.bam
+    output: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.bedgraph
+    jobid: 8
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.bedgraph; Code has changed since last execution
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:09:52 2022]
+Finished job 8.
+2 of 21 steps (10%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:09:52 2022]
+rule termseqPeakCalling:
+    input: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.bedgraph
+    output: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks
+    jobid: 7
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.bedgraph
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:09:57 2022]
+Finished job 7.
+3 of 21 steps (14%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:09:57 2022]
+rule termseqPeakCalling:
+    input: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.bedgraph
+    output: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks
+    jobid: 12
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks; Input files updated by another job: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.bedgraph
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:02 2022]
+Finished job 12.
+4 of 21 steps (19%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:02 2022]
+rule combineCovAndPeaks:
+    input: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks, LUZ7_peak_calling/LUZ7_control_t10.5end.plus.bedgraph
+    output: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts
+    jobid: 11
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts; Input files updated by another job: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.bedgraph, LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:03 2022]
+Finished job 11.
+5 of 21 steps (24%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:03 2022]
+rule addTotalReadsToCounts:
+    input: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts, BAM_files_LUZ7/LUZ7_control_t10.sorted.bam
+    output: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 10
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR; Input files updated by another job: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:03 2022]
+Finished job 10.
+6 of 21 steps (29%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:03 2022]
+rule clusterReads:
+    input: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    output: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 9
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv; Input files updated by another job: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=LUZ7, prefix=LUZ7_control_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:05 2022]
+Finished job 9.
+7 of 21 steps (33%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:05 2022]
+rule combineCovAndPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks, LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.bedgraph
+    output: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts
+    jobid: 6
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.bedgraph, LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:06 2022]
+Finished job 6.
+8 of 21 steps (38%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:06 2022]
+rule addTotalReadsToCounts:
+    input: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts, BAM_files_LUZ7/LUZ7_enriched_t10.sorted.bam
+    output: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 5
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:08 2022]
+Finished job 5.
+9 of 21 steps (43%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:08 2022]
+rule clusterReads:
+    input: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    output: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 4
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t10, num=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:10 2022]
+Finished job 4.
+10 of 21 steps (48%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:10 2022]
+rule getPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    output: LUZ7_t10_enrichedPeaks.plus.csv, LUZ7_t10_controlPeaks.plus.csv
+    jobid: 16
+    reason: Missing output files: LUZ7_t10_controlPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv; Input files updated by another job: LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=LUZ7, ident=t10, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:10 2022]
+Finished job 16.
+11 of 21 steps (52%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:10 2022]
+rule splitOverlappingPeaks:
+    input: LUZ7_t10_enrichedPeaks.plus.csv, LUZ7_t10_controlPeaks.plus.csv
+    output: LUZ7_t10_overlapping_peaks.plus.csv, LUZ7_t10_remainingPeaks.plus.csv
+    jobid: 15
+    reason: Missing output files: LUZ7_t10_overlapping_peaks.plus.csv, LUZ7_t10_remainingPeaks.plus.csv; Input files updated by another job: LUZ7_t10_controlPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t10, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:10 2022]
+Finished job 15.
+12 of 21 steps (57%) done
+Removing temporary output LUZ7_t10_controlPeaks.plus.csv.
+Select jobs to execute...
+
+[Sun Nov  6 17:10:10 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    output: LUZ7_t10_overlapping_peaks_lower_2.plus.csv
+    jobid: 20
+    reason: Missing output files: LUZ7_t10_overlapping_peaks_lower_2.plus.csv; Input files updated by another job: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t10, symb=lower, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:10 2022]
+Finished job 20.
+13 of 21 steps (62%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:10 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    output: LUZ7_t10_overlapping_peaks_lower_1.plus.csv
+    jobid: 19
+    reason: Missing output files: LUZ7_t10_overlapping_peaks_lower_1.plus.csv; Input files updated by another job: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t10, symb=lower, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:10 2022]
+Finished job 19.
+14 of 21 steps (67%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:10 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    output: LUZ7_t10_overlapping_peaks_higher_1.plus.csv
+    jobid: 17
+    reason: Missing output files: LUZ7_t10_overlapping_peaks_higher_1.plus.csv; Input files updated by another job: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t10, symb=higher, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:11 2022]
+Finished job 17.
+15 of 21 steps (71%) done
+Select jobs to execute...
+
+[Sun Nov  6 17:10:11 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    output: LUZ7_t10_overlapping_peaks_higher_2.plus.csv
+    jobid: 18
+    reason: Missing output files: LUZ7_t10_overlapping_peaks_higher_2.plus.csv; Input files updated by another job: LUZ7_t10_remainingPeaks.plus.csv, LUZ7_t10_enrichedPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t10, symb=higher, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:11 2022]
+Finished job 18.
+16 of 21 steps (76%) done
+Removing temporary output LUZ7_t10_remainingPeaks.plus.csv.
+Removing temporary output LUZ7_t10_enrichedPeaks.plus.csv.
+Select jobs to execute...
+
+[Sun Nov  6 17:10:11 2022]
+rule getAllOverlappingPeaks:
+    input: LUZ7_t10_overlapping_peaks.plus.csv, LUZ7_t10_overlapping_peaks_higher_1.plus.csv, LUZ7_t10_overlapping_peaks_higher_2.plus.csv, LUZ7_t10_overlapping_peaks_lower_1.plus.csv, LUZ7_t10_overlapping_peaks_lower_2.plus.csv
+    output: LUZ7_t10_all_overlapping_peaks.plus.csv
+    jobid: 14
+    reason: Missing output files: LUZ7_t10_all_overlapping_peaks.plus.csv; Input files updated by another job: LUZ7_t10_overlapping_peaks_lower_1.plus.csv, LUZ7_t10_overlapping_peaks_lower_2.plus.csv, LUZ7_t10_overlapping_peaks_higher_2.plus.csv, LUZ7_t10_overlapping_peaks_higher_1.plus.csv, LUZ7_t10_overlapping_peaks.plus.csv
+    wildcards: phage=LUZ7, ident=t10, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:11 2022]
+Finished job 14.
+17 of 21 steps (81%) done
+Removing temporary output LUZ7_t10_overlapping_peaks.plus.csv.
+Removing temporary output LUZ7_t10_overlapping_peaks_higher_1.plus.csv.
+Removing temporary output LUZ7_t10_overlapping_peaks_higher_2.plus.csv.
+Removing temporary output LUZ7_t10_overlapping_peaks_lower_1.plus.csv.
+Removing temporary output LUZ7_t10_overlapping_peaks_lower_2.plus.csv.
+Select jobs to execute...
+
+[Sun Nov  6 17:10:11 2022]
+rule getInformationFromOverlappingPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_t10_all_overlapping_peaks.plus.csv
+    output: TSS_LUZ7_t10/enr_ratios_LUZ7_t10.plus.csv
+    jobid: 3
+    reason: Input files updated by another job: LUZ7_t10_all_overlapping_peaks.plus.csv, LUZ7_peak_calling/LUZ7_control_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_enriched_t10.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=LUZ7, ident=t10, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:14 2022]
+Finished job 3.
+18 of 21 steps (86%) done
+Removing temporary output LUZ7_t10_all_overlapping_peaks.plus.csv.
+Select jobs to execute...
+
+[Sun Nov  6 17:10:14 2022]
+rule PosPeaksToBedFile:
+    input: TSS_LUZ7_t10/enr_ratios_LUZ7_t10.plus.csv
+    output: TSS_LUZ7_t10/LUZ7_enriched_t10_peaks.plus.bed, TSS_LUZ7_t10/LUZ7_control_t10_peaks.plus.bed
+    jobid: 2
+    reason: Missing output files: TSS_LUZ7_t10/LUZ7_enriched_t10_peaks.plus.bed; Input files updated by another job: TSS_LUZ7_t10/enr_ratios_LUZ7_t10.plus.csv
+    wildcards: phage=LUZ7, ident=t10
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:14 2022]
+Finished job 2.
+19 of 21 steps (90%) done
+Removing temporary output TSS_LUZ7_t10/LUZ7_control_t10_peaks.plus.bed.
+Select jobs to execute...
+
+[Sun Nov  6 17:10:14 2022]
+rule extractSequencesTSS:
+    input: TSS_LUZ7_t10/LUZ7_enriched_t10_peaks.plus.bed
+    output: TSS_LUZ7_t10/TSS_seq_LUZ7_enriched_t10.plus.fa.out
+    jobid: 1
+    reason: Input files updated by another job: TSS_LUZ7_t10/LUZ7_enriched_t10_peaks.plus.bed
+    wildcards: phage=LUZ7, ident=t10, cond=enriched, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:14 2022]
+Finished job 1.
+20 of 21 steps (95%) done
+Removing temporary output TSS_LUZ7_t10/LUZ7_enriched_t10_peaks.plus.bed.
+Select jobs to execute...
+
+[Sun Nov  6 17:10:14 2022]
+rule createNotebook:
+    input: TSS_LUZ7_t10/TSS_seq_LUZ7_enriched_t10.plus.fa.out
+    output: TSS_LUZ7_t10/structural_properties/LUZ7_t10_curvature.plus.png, TSS_LUZ7_t10/structural_properties/LUZ7_t10_curvature.plus.csv, TSS_LUZ7_t10/structural_properties/LUZ7_t10_stability.plus.png, TSS_LUZ7_t10/structural_properties/LUZ7_t10_stability.plus.csv, TSS_LUZ7_t10/structural_properties/LUZ7_t10_bendability.plus.png, TSS_LUZ7_t10/structural_properties/LUZ7_t10_bendability.plus.csv
+    log: logs/notebooks/LUZ7_t10.plus.ipynb
+    jobid: 0
+    reason: Input files updated by another job: TSS_LUZ7_t10/TSS_seq_LUZ7_enriched_t10.plus.fa.out
+    wildcards: phage=LUZ7, ident=t10, sign=plus
+    resources: tmpdir=/tmp
+
+[Sun Nov  6 17:10:27 2022]
+Finished job 0.
+21 of 21 steps (100%) done
+Complete log: .snakemake/log/2022-11-06T170947.809646.snakemake.log

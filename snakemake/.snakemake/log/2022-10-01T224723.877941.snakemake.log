@@ -1,0 +1,3 @@
+WildcardErrorin line 6 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile:
+No values given for wildcard 'prefix'.
+  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 6, in <module>

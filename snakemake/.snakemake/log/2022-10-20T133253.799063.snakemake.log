@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job               count    min threads    max threads
+--------------  -------  -------------  -------------
+createNotebook        1              1              1
+total                 1              1              1
+
+Select jobs to execute...
+
+[Thu Oct 20 13:32:54 2022]
+rule createNotebook:
+    input: TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.plus.fa.out
+    output: TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.csv, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.csv
+    log: logs/notebooks/LUZ7_t5.plus.ipynb
+    jobid: 0
+    reason: Forced execution
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in rule createNotebook in line 1 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/notebookStructuralProperties.smk:
+Job Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.png
+TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.csv completed successfully, but some output files are missing. 0
+Removing output files of failed job createNotebook since they might be corrupted:
+TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.csv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-20T133253.799063.snakemake.log

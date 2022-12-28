@@ -1,0 +1,29 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+all                                       1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+total                                     2              1              1
+
+Select jobs to execute...
+
+[Wed Oct 12 15:33:26 2022]
+rule getInformationFromOverlappingPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_t5_all_overlapping_peaks.plus.csv
+    output: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    jobid: 1
+    reason: Missing output files: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+RuleException in rule getInformationFromOverlappingPeaks in line 44 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTSS.smk:
+ValueError: Single '}' encountered in format string, when formatting the following:
+
+        commonEnriched=$(awk '{{ print $2 }}' {input[2]}})
+        echo "$commonEnriched"
+        

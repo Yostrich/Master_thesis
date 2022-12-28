@@ -1,0 +1,52 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+PosPeaksToBedFile                         1              1              1
+addTotalReadsToCounts                     2              1              1
+clipping                                  2              1              1
+clusterReads                              2              1              1
+combineCovAndPeaks                        2              1              1
+createGenomecov                           2              1              1
+createNotebook                            1              1              1
+cutadapt                                  2              1              1
+extractSequencesTSS                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError              4              1              1
+getPeaks                                  1              1              1
+minimap2                                  2              1              1
+pychopper                                 1              1              1
+samToBam                                  2              1              1
+sortBam                                   2              1              1
+splitOverlappingPeaks                     1              1              1
+termseqPeakCalling                        2              1              1
+total                                    32              1              1
+
+Select jobs to execute...
+
+[Sun Nov  6 17:34:11 2022]
+rule pychopper:
+    output: pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+    jobid: 14
+    reason: Forced execution
+    resources: tmpdir=/tmp
+
+Terminating processes on user request, this might take some time.
+[Sun Nov  6 17:34:18 2022]
+Error in rule pychopper:
+    jobid: 14
+    output: pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq, pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+    shell:
+        
+        pychopper -r pychopper_LUZ7_t5/LUZ7_enriched_t5_report.pdf testData/LUZ7_enriched.fastq pychopper_LUZ7_t5/LUZ7_enriched_t5_full_length_output.fq
+
+        pychopper -r pychopper_LUZ7_t5/LUZ7_control_t5_report.pdf testData/LUZ7_control.fastq pychopper_LUZ7_t5/LUZ7_control_t5_full_length_output.fq
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: .snakemake/log/2022-11-06T173411.038186.snakemake.log

@@ -1,0 +1,27 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job               count    min threads    max threads
+--------------  -------  -------------  -------------
+createNotebook        1              1              1
+total                 1              1              1
+
+Select jobs to execute...
+
+[Thu Oct 20 14:47:57 2022]
+rule createNotebook:
+    input: TSS_LUZ7_t10/TSS_seq_LUZ7_enriched_t10.plus.fa.out
+    output: TSS_LUZ7_t10/structural_properties/LUZ7_t10_curvature.plus.png, TSS_LUZ7_t10/structural_properties/LUZ7_t10_curvature.plus.csv, TSS_LUZ7_t10/structural_properties/LUZ7_t10_stability.plus.png, TSS_LUZ7_t10/structural_properties/LUZ7_t10_stability.plus.csv
+    log: logs/notebooks/LUZ7_t10.plus.ipynb
+    jobid: 0
+    reason: Code has changed since last execution
+    wildcards: phage=LUZ7, ident=t10, sign=plus
+    resources: tmpdir=/tmp
+
+[Thu Oct 20 14:48:04 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2022-10-20T144756.712660.snakemake.log

@@ -1,0 +1,103 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+all                                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError              4              1              1
+total                                     7              1              1
+
+Select jobs to execute...
+
+[Wed Oct 12 11:19:29 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t5_remainingPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    output: LUZ7_t5_overlapping_peaks_plus_1.plus.csv
+    jobid: 25
+    reason: Missing output files: LUZ7_t5_overlapping_peaks_plus_1.plus.csv
+    wildcards: phage=LUZ7, ident=t5, symb=plus, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 11:19:29 2022]
+Finished job 25.
+1 of 7 steps (14%) done
+Select jobs to execute...
+
+[Wed Oct 12 11:19:29 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t5_remainingPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    output: LUZ7_t5_overlapping_peaks_minus_2.plus.csv
+    jobid: 30
+    reason: Missing output files: LUZ7_t5_overlapping_peaks_minus_2.plus.csv; Code has changed since last execution
+    wildcards: phage=LUZ7, ident=t5, symb=minus, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 11:19:29 2022]
+Finished job 30.
+2 of 7 steps (29%) done
+Select jobs to execute...
+
+[Wed Oct 12 11:19:29 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t5_remainingPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    output: LUZ7_t5_overlapping_peaks_plus_2.plus.csv
+    jobid: 28
+    reason: Missing output files: LUZ7_t5_overlapping_peaks_plus_2.plus.csv; Code has changed since last execution
+    wildcards: phage=LUZ7, ident=t5, symb=plus, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 11:19:29 2022]
+Finished job 28.
+3 of 7 steps (43%) done
+Select jobs to execute...
+
+[Wed Oct 12 11:19:29 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ7_t5_remainingPeaks.plus.csv, LUZ7_t5_enrichedPeaks.plus.csv
+    output: LUZ7_t5_overlapping_peaks_minus_1.plus.csv
+    jobid: 29
+    reason: Missing output files: LUZ7_t5_overlapping_peaks_minus_1.plus.csv; Code has changed since last execution
+    wildcards: phage=LUZ7, ident=t5, symb=minus, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 11:19:29 2022]
+Finished job 29.
+4 of 7 steps (57%) done
+Select jobs to execute...
+
+[Wed Oct 12 11:19:29 2022]
+rule getAllOverlappingPeaks:
+    input: LUZ7_t5_overlapping_peaks_plus_1.plus.csv, LUZ7_t5_overlapping_peaks_plus_2.plus.csv, LUZ7_t5_overlapping_peaks_minus_1.plus.csv, LUZ7_t5_overlapping_peaks_minus_2.plus.csv
+    output: LUZ7_t5_allOverlappingPeaks.plus.csv
+    jobid: 24
+    reason: Missing output files: LUZ7_t5_allOverlappingPeaks.plus.csv; Input files updated by another job: LUZ7_t5_overlapping_peaks_plus_1.plus.csv, LUZ7_t5_overlapping_peaks_minus_1.plus.csv, LUZ7_t5_overlapping_peaks_minus_2.plus.csv, LUZ7_t5_overlapping_peaks_plus_2.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 12 11:19:29 2022]
+Finished job 24.
+5 of 7 steps (71%) done
+Select jobs to execute...
+
+[Wed Oct 12 11:19:29 2022]
+rule getInformationFromOverlappingPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_peak_calling/LUZ7_control_t5.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_t5_allOverlappingPeaks.plus.csv
+    output: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv
+    jobid: 1
+    reason: Missing output files: TSS_LUZ7_t5/enrRatios_LUZ7_t5.plus.csv; Input files updated by another job: LUZ7_t5_allOverlappingPeaks.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+RuleException in rule getInformationFromOverlappingPeaks in line 39 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTSS.smk:
+IndexError: tuple index out of range, when formatting the following:
+
+        # commonEnriched=$(awk '{{ print $2 }}' {input[2]} |        # xargs -I {} awk -F "," '$14 == {} {print $1, $2, $3, $14, $5, $17, $18}' {input[0]})
+        # commonControl=$(awk '{{ print $1 }}' {input[2]} |        # xargs -I {} awk -F "," '$14 == {} {print $1, $2, $3, $14, $5, $17, $18}' {input[1]})
+
+        # paste -d ' ' <(echo "$commonEnriched") <(echo "$commonControl") |        # awk '{print $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $7/$14}' |        # sort -g -k 2,2 | awk -v t=$Threshold -F " " '$15 > t {print }' > {output}
+        

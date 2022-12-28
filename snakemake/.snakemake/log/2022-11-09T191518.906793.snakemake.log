@@ -1,0 +1,168 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+PosPeaksToBedFile                         1              1              1
+createNotebook                            1              1              1
+extractSequencesTSS                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError              4              1              1
+splitOverlappingPeaks                     1              1              1
+total                                    10              1              1
+
+Select jobs to execute...
+
+[Wed Nov  9 19:15:19 2022]
+rule splitOverlappingPeaks:
+    input: LUZ19_one_enrichedPeaks.plus.csv, LUZ19_one_controlPeaks.plus.csv
+    output: LUZ19_one_overlapping_peaks.plus.csv, LUZ19_one_remainingPeaks.plus.csv
+    jobid: 15
+    reason: Forced execution
+    wildcards: phage=LUZ19, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:19 2022]
+Finished job 15.
+1 of 10 steps (10%) done
+Removing temporary output LUZ19_one_controlPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:15:19 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ19_one_remainingPeaks.plus.csv, LUZ19_one_enrichedPeaks.plus.csv
+    output: LUZ19_one_overlapping_peaks_lower_2.plus.csv
+    jobid: 20
+    reason: Missing output files: LUZ19_one_overlapping_peaks_lower_2.plus.csv; Input files updated by another job: LUZ19_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ19, ident=one, symb=lower, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:19 2022]
+Finished job 20.
+2 of 10 steps (20%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:15:19 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ19_one_remainingPeaks.plus.csv, LUZ19_one_enrichedPeaks.plus.csv
+    output: LUZ19_one_overlapping_peaks_lower_1.plus.csv
+    jobid: 19
+    reason: Missing output files: LUZ19_one_overlapping_peaks_lower_1.plus.csv; Input files updated by another job: LUZ19_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ19, ident=one, symb=lower, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:19 2022]
+Finished job 19.
+3 of 10 steps (30%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:15:19 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ19_one_remainingPeaks.plus.csv, LUZ19_one_enrichedPeaks.plus.csv
+    output: LUZ19_one_overlapping_peaks_higher_1.plus.csv
+    jobid: 17
+    reason: Missing output files: LUZ19_one_overlapping_peaks_higher_1.plus.csv; Input files updated by another job: LUZ19_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ19, ident=one, symb=higher, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:19 2022]
+Finished job 17.
+4 of 10 steps (40%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:15:19 2022]
+rule getOverlappingPeaksWithError:
+    input: LUZ19_one_remainingPeaks.plus.csv, LUZ19_one_enrichedPeaks.plus.csv
+    output: LUZ19_one_overlapping_peaks_higher_2.plus.csv
+    jobid: 18
+    reason: Missing output files: LUZ19_one_overlapping_peaks_higher_2.plus.csv; Input files updated by another job: LUZ19_one_remainingPeaks.plus.csv
+    wildcards: phage=LUZ19, ident=one, symb=higher, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:19 2022]
+Finished job 18.
+5 of 10 steps (50%) done
+Removing temporary output LUZ19_one_remainingPeaks.plus.csv.
+Removing temporary output LUZ19_one_enrichedPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:15:19 2022]
+rule getAllOverlappingPeaks:
+    input: LUZ19_one_overlapping_peaks.plus.csv, LUZ19_one_overlapping_peaks_higher_1.plus.csv, LUZ19_one_overlapping_peaks_higher_2.plus.csv, LUZ19_one_overlapping_peaks_lower_1.plus.csv, LUZ19_one_overlapping_peaks_lower_2.plus.csv
+    output: LUZ19_one_all_overlapping_peaks.plus.csv
+    jobid: 14
+    reason: Missing output files: LUZ19_one_all_overlapping_peaks.plus.csv; Input files updated by another job: LUZ19_one_overlapping_peaks.plus.csv, LUZ19_one_overlapping_peaks_higher_2.plus.csv, LUZ19_one_overlapping_peaks_lower_2.plus.csv, LUZ19_one_overlapping_peaks_higher_1.plus.csv, LUZ19_one_overlapping_peaks_lower_1.plus.csv
+    wildcards: phage=LUZ19, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:20 2022]
+Finished job 14.
+6 of 10 steps (60%) done
+Removing temporary output LUZ19_one_overlapping_peaks.plus.csv.
+Removing temporary output LUZ19_one_overlapping_peaks_higher_1.plus.csv.
+Removing temporary output LUZ19_one_overlapping_peaks_higher_2.plus.csv.
+Removing temporary output LUZ19_one_overlapping_peaks_lower_1.plus.csv.
+Removing temporary output LUZ19_one_overlapping_peaks_lower_2.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:15:20 2022]
+rule getInformationFromOverlappingPeaks:
+    input: LUZ19_peak_calling/LUZ19_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ19_peak_calling/LUZ19_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ19_one_all_overlapping_peaks.plus.csv
+    output: TSS_LUZ19_one/enr_ratios_LUZ19_one.plus.csv
+    jobid: 3
+    reason: Input files updated by another job: LUZ19_one_all_overlapping_peaks.plus.csv
+    wildcards: phage=LUZ19, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:21 2022]
+Finished job 3.
+7 of 10 steps (70%) done
+Removing temporary output LUZ19_one_all_overlapping_peaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 19:15:21 2022]
+rule PosPeaksToBedFile:
+    input: TSS_LUZ19_one/enr_ratios_LUZ19_one.plus.csv
+    output: TSS_LUZ19_one/LUZ19_enriched_one_peaks.plus.bed, TSS_LUZ19_one/LUZ19_control_one_peaks.plus.bed
+    jobid: 2
+    reason: Input files updated by another job: TSS_LUZ19_one/enr_ratios_LUZ19_one.plus.csv
+    wildcards: phage=LUZ19, ident=one
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:21 2022]
+Finished job 2.
+8 of 10 steps (80%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:15:21 2022]
+rule extractSequencesTSS:
+    input: TSS_LUZ19_one/LUZ19_enriched_one_peaks.plus.bed
+    output: TSS_LUZ19_one/TSS_seq_LUZ19_enriched_one.plus.fa.out
+    jobid: 1
+    reason: Input files updated by another job: TSS_LUZ19_one/LUZ19_enriched_one_peaks.plus.bed
+    wildcards: phage=LUZ19, ident=one, cond=enriched, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:21 2022]
+Finished job 1.
+9 of 10 steps (90%) done
+Select jobs to execute...
+
+[Wed Nov  9 19:15:21 2022]
+rule createNotebook:
+    input: TSS_LUZ19_one/TSS_seq_LUZ19_enriched_one.plus.fa.out
+    output: TSS_LUZ19_one/structural_properties/LUZ19_one_curvature.plus.png, TSS_LUZ19_one/structural_properties/LUZ19_one_curvature.plus.csv, TSS_LUZ19_one/structural_properties/LUZ19_one_stability.plus.png, TSS_LUZ19_one/structural_properties/LUZ19_one_stability.plus.csv, TSS_LUZ19_one/structural_properties/LUZ19_one_bendability.plus.png, TSS_LUZ19_one/structural_properties/LUZ19_one_bendability.plus.csv
+    log: logs/notebooks/LUZ19_one.plus.ipynb
+    jobid: 0
+    reason: Input files updated by another job: TSS_LUZ19_one/TSS_seq_LUZ19_enriched_one.plus.fa.out
+    wildcards: phage=LUZ19, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 19:15:33 2022]
+Finished job 0.
+10 of 10 steps (100%) done
+Complete log: .snakemake/log/2022-11-09T191518.906793.snakemake.log

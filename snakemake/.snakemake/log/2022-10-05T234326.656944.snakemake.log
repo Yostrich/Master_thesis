@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in rule all in line 5 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile:
+Missing input files for rule all:
+    affected files:
+        LUZ7_peak_calling/t5_enriched-LUZ7.5end.plus.peaks.oracle.narrowPeak.counts.TSS.clustered.csv
+        LUZ7_peak_calling/t5_enriched-LUZ7.5end.minus.peaks.oracle.narrowPeak.counts.TTS.clustered.csv

@@ -1,0 +1,4 @@
+KeyErrorin line 20 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk:
+'termseq alpha'
+  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 2, in <module>
+  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk", line 20, in <module>

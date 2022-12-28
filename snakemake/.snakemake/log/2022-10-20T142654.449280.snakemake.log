@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job               count    min threads    max threads
+--------------  -------  -------------  -------------
+createNotebook        1              1              1
+total                 1              1              1
+
+Select jobs to execute...
+
+[Thu Oct 20 14:26:54 2022]
+rule createNotebook:
+    input: TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.plus.fa.out
+    output: TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.csv, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.csv
+    log: logs/notebooks/LUZ7_t5.plus.ipynb
+    jobid: 0
+    reason: Code has changed since last execution
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Thu Oct 20 14:27:01 2022]
+Error in rule createNotebook:
+    jobid: 0
+    output: TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.csv, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.csv
+    log: logs/notebooks/LUZ7_t5.plus.ipynb (check log file(s) for error message)
+
+RuleException:
+CalledProcessErrorin line 11 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/notebookStructuralProperties.smk:
+Command 'set -euo pipefail;  jupyter-nbconvert --log-level ERROR --execute --output /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/logs/notebooks/LUZ7_t5.plus.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/.snakemake/scripts/tmpqpgoo6ko.structuralProperties.py.ipynb' returned non-zero exit status 1.
+  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/notebookStructuralProperties.smk", line 11, in __rule_createNotebook
+  File "/home/yostrich/anaconda3/envs/snakemake/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+Removing output files of failed job createNotebook since they might be corrupted:
+TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.csv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-10-20T142654.449280.snakemake.log

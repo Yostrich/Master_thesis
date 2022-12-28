@@ -1,0 +1,42 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+NegPeaksToBedFile                         1              1              1
+PosPeaksToBedFile                         1              1              1
+addTotalReadsToCounts                     4              1              1
+all                                       1              1              1
+clipping                                  2              1              1
+clusterReads                              4              1              1
+combineCovAndPeaks                        4              1              1
+createGenomecov                           4              1              1
+createNotebook                            2              1              1
+cutadapt                                  2              1              1
+extractSequencesTSS                       2              1              1
+getAllOverlappingPeaks                    2              1              1
+getInformationFromOverlappingPeaks        2              1              1
+getOverlappingPeaksWithError              8              1              1
+getPeaks                                  2              1              1
+minimap2                                  2              1              1
+pychopper                                 1              1              1
+samToBam                                  2              1              1
+sortBam                                   2              1              1
+splitOverlappingPeaks                     2              1              1
+termseqPeakCalling                        4              1              1
+total                                    54              1              1
+
+Select jobs to execute...
+
+[Sun Nov  6 16:13:31 2022]
+rule pychopper:
+    output: pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq, pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq
+    jobid: 15
+    reason: Missing output files: pychopper_PhiKZ_one/PhiKZ_control_one_full_length_output.fq, pychopper_PhiKZ_one/PhiKZ_enriched_one_full_length_output.fq
+    resources: tmpdir=/tmp
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

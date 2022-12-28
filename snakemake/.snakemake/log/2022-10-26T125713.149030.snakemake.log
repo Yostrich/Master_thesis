@@ -1,0 +1,27 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job               count    min threads    max threads
+--------------  -------  -------------  -------------
+createNotebook        1              1              1
+total                 1              1              1
+
+Select jobs to execute...
+
+[Wed Oct 26 12:57:13 2022]
+rule createNotebook:
+    input: TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.plus.fa.out
+    output: TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.csv, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.png, TSS_LUZ7_t5/structural_properties/LUZ7_t5_stability.plus.csv
+    log: logs/notebooks/LUZ7_t5.plus.ipynb
+    jobid: 0
+    reason: Missing output files: TSS_LUZ7_t5/structural_properties/LUZ7_t5_curvature.plus.png
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Oct 26 12:57:19 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2022-10-26T125713.149030.snakemake.log

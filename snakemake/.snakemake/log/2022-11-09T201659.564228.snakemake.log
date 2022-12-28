@@ -1,0 +1,27 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job               count    min threads    max threads
+--------------  -------  -------------  -------------
+createNotebook        1              1              1
+total                 1              1              1
+
+Select jobs to execute...
+
+[Wed Nov  9 20:17:00 2022]
+rule createNotebook:
+    input: TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.minus.fa.out
+    output: TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.minus.png, TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.minus.csv, TSS_PhiKZ_one/structural_properties/PhiKZ_one_stability.minus.png, TSS_PhiKZ_one/structural_properties/PhiKZ_one_stability.minus.csv, TSS_PhiKZ_one/structural_properties/PhiKZ_one_bendability.minus.png, TSS_PhiKZ_one/structural_properties/PhiKZ_one_bendability.minus.csv
+    log: logs/notebooks/PhiKZ_one.minus.ipynb
+    jobid: 0
+    reason: Code has changed since last execution
+    wildcards: phage=PhiKZ, ident=one, sign=minus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 20:17:15 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2022-11-09T201659.564228.snakemake.log

@@ -1,0 +1,18 @@
+Building DAG of jobs...
+WorkflowError:
+MissingInputException: Missing input files for rule getAllOverlappingPeaks:
+    output: LUZ7_t5_all_overlapping_peaks.plus.csv
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    affected files:
+        LUZ7_t5_overlappingPeaks.plus.csv
+WorkflowError:
+    MissingInputException: Missing input files for rule cutadapt:
+        output: BAM_files_LUZ7_t5/LUZ7_t5_enriched_all.sorted_cutadapt.fq
+        wildcards: phage=BAM_files_LUZ7_t5/LUZ7_t5, cond=enriched, ident=all.sorted
+        affected files:
+            pychopper_BAM_files_LUZ7_t5/LUZ7_t5_all.sorted/BAM_files_LUZ7_t5/LUZ7_t5_enriched_all.sorted_full_length_output.fq
+    MissingInputException: Missing input files for rule cutadapt:
+        output: LUZ7_t5_enriched_all_cutadapt.fq
+        wildcards: phage=LUZ7_t5, cond=enriched, ident=all
+        affected files:
+            pychopper_LUZ7_t5_all/LUZ7_t5_enriched_all_full_length_output.fq

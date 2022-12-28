@@ -1,0 +1,173 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+NegCoverageDropToBed         1              1              1
+NegEffRatios                 1              1              1
+PosCoverageDropToBed         1              1              1
+addTotalReadsToCounts        1              1              1
+all                          1              1              1
+clusterReads                 1              1              1
+combineCovAndPeaks           1              1              1
+createGenomecov              1              1              1
+extractSequencesTTS          2              1              1
+termseqPeakCalling           1              1              1
+total                       11              1              1
+
+Select jobs to execute...
+
+[Fri Oct 14 14:15:16 2022]
+rule PosCoverageDropToBed:
+    input: TTS_LUZ7_t5/eff_ratios_LUZ7_t5.plus.drop.coverage
+    output: TTS_LUZ7_t5/TSS_LUZ7_t5.plus.bed
+    jobid: 54
+    reason: Missing output files: TTS_LUZ7_t5/TSS_LUZ7_t5.plus.bed
+    wildcards: phage=LUZ7, ident=t5
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:16 2022]
+Finished job 54.
+1 of 11 steps (9%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:16 2022]
+rule extractSequencesTTS:
+    input: TTS_LUZ7_t5/TSS_LUZ7_t5.plus.bed
+    output: TTS_LUZ7_t5/TTS_seq_LUZ7_t5.plus.fa.out
+    jobid: 53
+    reason: Missing output files: TTS_LUZ7_t5/TTS_seq_LUZ7_t5.plus.fa.out; Input files updated by another job: TTS_LUZ7_t5/TSS_LUZ7_t5.plus.bed
+    wildcards: phage=LUZ7, ident=t5, sign=plus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:16 2022]
+Finished job 53.
+2 of 11 steps (18%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:16 2022]
+rule createGenomecov:
+    input: BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam
+    output: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.bedgraph
+    jobid: 69
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.bedgraph
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=3, sign=minus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:21 2022]
+Finished job 69.
+3 of 11 steps (27%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:21 2022]
+rule termseqPeakCalling:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.bedgraph
+    output: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks
+    jobid: 68
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.bedgraph
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=3, sign=minus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:23 2022]
+Finished job 68.
+4 of 11 steps (36%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:23 2022]
+rule combineCovAndPeaks:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks, LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.bedgraph
+    output: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts
+    jobid: 67
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks, LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.bedgraph
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=3, sign=minus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:23 2022]
+Finished job 67.
+5 of 11 steps (45%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:23 2022]
+rule addTotalReadsToCounts:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts, BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam
+    output: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.withTR
+    jobid: 66
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.withTR; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=3, sign=minus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:27 2022]
+Finished job 66.
+6 of 11 steps (55%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:27 2022]
+rule clusterReads:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.withTR
+    output: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.clustered.csv
+    jobid: 65
+    reason: Missing output files: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.clustered.csv; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.withTR
+    wildcards: phage=LUZ7, prefix=LUZ7_enriched_t5, num=3, sign=minus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:28 2022]
+Finished job 65.
+7 of 11 steps (64%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:28 2022]
+rule NegEffRatios:
+    input: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.clustered.csv, LUZ7_genome.txt, BAM_files_LUZ7/LUZ7_enriched_t5.sorted.bam
+    output: TTS_LUZ7_t5/eff_ratios_LUZ7_t5.minus.drop.coverage
+    jobid: 64
+    reason: Missing output files: TTS_LUZ7_t5/eff_ratios_LUZ7_t5.minus.drop.coverage; Input files updated by another job: LUZ7_peak_calling/LUZ7_enriched_t5.3end.minus.peaks.oracle.narrowPeak.counts.clustered.csv
+    wildcards: phage=LUZ7, ident=t5
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:45 2022]
+Finished job 64.
+8 of 11 steps (73%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:45 2022]
+rule NegCoverageDropToBed:
+    input: TTS_LUZ7_t5/eff_ratios_LUZ7_t5.minus.drop.coverage
+    output: TTS_LUZ7_t5/TSS_LUZ7_t5.minus.bed
+    jobid: 63
+    reason: Missing output files: TTS_LUZ7_t5/TSS_LUZ7_t5.minus.bed; Input files updated by another job: TTS_LUZ7_t5/eff_ratios_LUZ7_t5.minus.drop.coverage
+    wildcards: phage=LUZ7, ident=t5
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:45 2022]
+Finished job 63.
+9 of 11 steps (82%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:45 2022]
+rule extractSequencesTTS:
+    input: TTS_LUZ7_t5/TSS_LUZ7_t5.minus.bed
+    output: TTS_LUZ7_t5/TTS_seq_LUZ7_t5.minus.fa.out
+    jobid: 62
+    reason: Missing output files: TTS_LUZ7_t5/TTS_seq_LUZ7_t5.minus.fa.out; Input files updated by another job: TTS_LUZ7_t5/TSS_LUZ7_t5.minus.bed
+    wildcards: phage=LUZ7, ident=t5, sign=minus
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:45 2022]
+Finished job 62.
+10 of 11 steps (91%) done
+Select jobs to execute...
+
+[Fri Oct 14 14:15:45 2022]
+localrule all:
+    input: TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.plus.fa.out, TSS_LUZ7_t5/TSS_seq_LUZ7_enriched_t5.minus.fa.out, TTS_LUZ7_t5/TTS_seq_LUZ7_t5.plus.fa.out, TTS_LUZ7_t5/TTS_seq_LUZ7_t5.minus.fa.out
+    jobid: 0
+    reason: Input files updated by another job: TTS_LUZ7_t5/TTS_seq_LUZ7_t5.minus.fa.out, TTS_LUZ7_t5/TTS_seq_LUZ7_t5.plus.fa.out
+    resources: tmpdir=/tmp
+
+[Fri Oct 14 14:15:45 2022]
+Finished job 0.
+11 of 11 steps (100%) done
+Complete log: .snakemake/log/2022-10-14T141515.655293.snakemake.log

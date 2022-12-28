@@ -1,0 +1,273 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job                                   count    min threads    max threads
+----------------------------------  -------  -------------  -------------
+PosPeaksToBedFile                         1              1              1
+createNotebook                            1              1              1
+extractSequencesTSS                       1              1              1
+getAllOverlappingPeaks                    1              1              1
+getInformationFromOverlappingPeaks        1              1              1
+getOverlappingPeaksWithError             10              1              1
+getPeaks                                  1              1              1
+splitOverlappingPeaks                     1              1              1
+total                                    17              1              1
+
+Select jobs to execute...
+
+[Wed Nov  9 16:13:31 2022]
+rule getPeaks:
+    input: PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv
+    output: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_controlPeaks.plus.csv
+    jobid: 16
+    reason: Missing output files: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_controlPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:31 2022]
+Finished job 16.
+1 of 17 steps (6%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:31 2022]
+rule splitOverlappingPeaks:
+    input: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_controlPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    jobid: 15
+    reason: Missing output files: PhiKZ_one_overlapping_peaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_controlPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:32 2022]
+Finished job 15.
+2 of 17 steps (12%) done
+Removing temporary output PhiKZ_one_controlPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 16:13:32 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_lower_1.plus.csv
+    jobid: 22
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_lower_1.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:32 2022]
+Finished job 22.
+3 of 17 steps (18%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:32 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_higher_4.plus.csv
+    jobid: 20
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_higher_4.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=4, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:32 2022]
+Finished job 20.
+4 of 17 steps (24%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:32 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_higher_2.plus.csv
+    jobid: 18
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_higher_2.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:32 2022]
+Finished job 18.
+5 of 17 steps (29%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:32 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_lower_4.plus.csv
+    jobid: 25
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_lower_4.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=4, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:32 2022]
+Finished job 25.
+6 of 17 steps (35%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:32 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_lower_2.plus.csv
+    jobid: 23
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_lower_2.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=2, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:33 2022]
+Finished job 23.
+7 of 17 steps (41%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:33 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_higher_5.plus.csv
+    jobid: 21
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_higher_5.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:33 2022]
+Finished job 21.
+8 of 17 steps (47%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:33 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_higher_3.plus.csv
+    jobid: 19
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_higher_3.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=3, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:33 2022]
+Finished job 19.
+9 of 17 steps (53%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:33 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_lower_5.plus.csv
+    jobid: 26
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_lower_5.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=5, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:33 2022]
+Finished job 26.
+10 of 17 steps (59%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:33 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_lower_3.plus.csv
+    jobid: 24
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_lower_3.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=lower, error=3, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:34 2022]
+Finished job 24.
+11 of 17 steps (65%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:34 2022]
+rule getOverlappingPeaksWithError:
+    input: PhiKZ_one_remainingPeaks.plus.csv, PhiKZ_one_enrichedPeaks.plus.csv
+    output: PhiKZ_one_overlapping_peaks_higher_1.plus.csv
+    jobid: 17
+    reason: Missing output files: PhiKZ_one_overlapping_peaks_higher_1.plus.csv; Input files updated by another job: PhiKZ_one_enrichedPeaks.plus.csv, PhiKZ_one_remainingPeaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, symb=higher, error=1, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:34 2022]
+Finished job 17.
+12 of 17 steps (71%) done
+Removing temporary output PhiKZ_one_remainingPeaks.plus.csv.
+Removing temporary output PhiKZ_one_enrichedPeaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 16:13:34 2022]
+rule getAllOverlappingPeaks:
+    input: PhiKZ_one_overlapping_peaks.plus.csv, PhiKZ_one_overlapping_peaks_higher_1.plus.csv, PhiKZ_one_overlapping_peaks_higher_2.plus.csv, PhiKZ_one_overlapping_peaks_higher_3.plus.csv, PhiKZ_one_overlapping_peaks_higher_4.plus.csv, PhiKZ_one_overlapping_peaks_higher_5.plus.csv, PhiKZ_one_overlapping_peaks_lower_1.plus.csv, PhiKZ_one_overlapping_peaks_lower_2.plus.csv, PhiKZ_one_overlapping_peaks_lower_3.plus.csv, PhiKZ_one_overlapping_peaks_lower_4.plus.csv, PhiKZ_one_overlapping_peaks_lower_5.plus.csv
+    output: PhiKZ_one_all_overlapping_peaks.plus.csv
+    jobid: 14
+    reason: Missing output files: PhiKZ_one_all_overlapping_peaks.plus.csv; Input files updated by another job: PhiKZ_one_overlapping_peaks_higher_4.plus.csv, PhiKZ_one_overlapping_peaks_lower_5.plus.csv, PhiKZ_one_overlapping_peaks_lower_1.plus.csv, PhiKZ_one_overlapping_peaks_higher_5.plus.csv, PhiKZ_one_overlapping_peaks_higher_1.plus.csv, PhiKZ_one_overlapping_peaks_lower_4.plus.csv, PhiKZ_one_overlapping_peaks.plus.csv, PhiKZ_one_overlapping_peaks_lower_3.plus.csv, PhiKZ_one_overlapping_peaks_lower_2.plus.csv, PhiKZ_one_overlapping_peaks_higher_2.plus.csv, PhiKZ_one_overlapping_peaks_higher_3.plus.csv
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:34 2022]
+Finished job 14.
+13 of 17 steps (76%) done
+Removing temporary output PhiKZ_one_overlapping_peaks.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_higher_1.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_higher_2.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_higher_3.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_higher_4.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_higher_5.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_lower_1.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_lower_2.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_lower_3.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_lower_4.plus.csv.
+Removing temporary output PhiKZ_one_overlapping_peaks_lower_5.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 16:13:34 2022]
+rule getInformationFromOverlappingPeaks:
+    input: PhiKZ_peak_calling/PhiKZ_enriched_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, PhiKZ_peak_calling/PhiKZ_control_one.5end.plus.peaks.oracle.narrowPeak.counts.clustered.csv, PhiKZ_one_all_overlapping_peaks.plus.csv
+    output: TSS_PhiKZ_one/enr_ratios_PhiKZ_one.plus.csv
+    jobid: 3
+    reason: Missing output files: TSS_PhiKZ_one/enr_ratios_PhiKZ_one.plus.csv; Input files updated by another job: PhiKZ_one_all_overlapping_peaks.plus.csv
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:39 2022]
+Finished job 3.
+14 of 17 steps (82%) done
+Removing temporary output PhiKZ_one_all_overlapping_peaks.plus.csv.
+Select jobs to execute...
+
+[Wed Nov  9 16:13:39 2022]
+rule PosPeaksToBedFile:
+    input: TSS_PhiKZ_one/enr_ratios_PhiKZ_one.plus.csv
+    output: TSS_PhiKZ_one/PhiKZ_enriched_one_peaks.plus.bed, TSS_PhiKZ_one/PhiKZ_control_one_peaks.plus.bed
+    jobid: 2
+    reason: Missing output files: TSS_PhiKZ_one/PhiKZ_enriched_one_peaks.plus.bed; Input files updated by another job: TSS_PhiKZ_one/enr_ratios_PhiKZ_one.plus.csv
+    wildcards: phage=PhiKZ, ident=one
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:39 2022]
+Finished job 2.
+15 of 17 steps (88%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:39 2022]
+rule extractSequencesTSS:
+    input: TSS_PhiKZ_one/PhiKZ_enriched_one_peaks.plus.bed
+    output: TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.plus.fa.out
+    jobid: 1
+    reason: Missing output files: TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.plus.fa.out; Input files updated by another job: TSS_PhiKZ_one/PhiKZ_enriched_one_peaks.plus.bed
+    wildcards: phage=PhiKZ, ident=one, cond=enriched, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:13:39 2022]
+Finished job 1.
+16 of 17 steps (94%) done
+Select jobs to execute...
+
+[Wed Nov  9 16:13:39 2022]
+rule createNotebook:
+    input: TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.plus.fa.out
+    output: TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.plus.png, TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.plus.csv, TSS_PhiKZ_one/structural_properties/PhiKZ_one_stability.plus.png, TSS_PhiKZ_one/structural_properties/PhiKZ_one_stability.plus.csv, TSS_PhiKZ_one/structural_properties/PhiKZ_one_bendability.plus.png, TSS_PhiKZ_one/structural_properties/PhiKZ_one_bendability.plus.csv
+    log: logs/notebooks/PhiKZ_one.plus.ipynb
+    jobid: 0
+    reason: Missing output files: TSS_PhiKZ_one/structural_properties/PhiKZ_one_curvature.plus.png; Input files updated by another job: TSS_PhiKZ_one/TSS_seq_PhiKZ_enriched_one.plus.fa.out
+    wildcards: phage=PhiKZ, ident=one, sign=plus
+    resources: tmpdir=/tmp
+
+[Wed Nov  9 16:14:17 2022]
+Finished job 0.
+17 of 17 steps (100%) done
+Complete log: .snakemake/log/2022-11-09T161331.203410.snakemake.log
