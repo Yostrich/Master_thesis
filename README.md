@@ -9,3 +9,17 @@
 * minimap2
   * https://github.com/lh3/minimap2#install
   * `mamba install -c bioconda minimap2`
+* samtools
+  * http://www.htslib.org/
+  * `mamba install -c bioconda samtools`
+* bedtools
+  * https://bedtools.readthedocs.io/en/latest/
+  * `mamba install -c bioconda bedtools`
+* termseq-peaks
+  * https://github.com/nichd-bspc/termseq-peaks
+  * ```
+git clone https://github.com/NICHD-BSPC/termseq-peaks
+cd termseq-peaks
+mamba install -c bioconda --file requirements.txt
+python setup.py install
+```
