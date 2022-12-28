@@ -17,7 +17,7 @@
   * `mamba install -c bioconda bedtools`
 * termseq-peaks
   * https://github.com/nichd-bspc/termseq-peaks
-  * ```
+```
 git clone https://github.com/NICHD-BSPC/termseq-peaks
 cd termseq-peaks
 mamba install -c bioconda --file requirements.txt
