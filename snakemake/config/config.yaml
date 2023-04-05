@@ -1,24 +1,35 @@
-Phage name: LUZ7
-fasta file: LUZ7.fasta
-enriched fastq: testData/LUZ7_enriched.fastq
-control fastq: testData/LUZ7_control.fastq
-ID: a
-termseq alpha: 0.05
+Phage name: LUZ19
+fasta file: PAO1.fasta
+enriched fastq: LUZ7_enriched.fastq
+control fastq: LUZ7_control.fastq
+ID: pooledPAO1
+termseq alpha: 0.001
+
 cluster width:
   TSS: 10
   TTS: 20
+
 minimum coverage: 
-  TSS: 5
-  TTS: 30
+  enriched:
+    TSS: 5
+    TTS: 30
+  control:
+    TSS: 2
+    TTS: 2
+    
 
 peak alignment error: 2
-TSS Threshold: 1
+TSS Threshold: 2
 TTS threshold: 0.20
 
 TSS sequence extraction:
-  upstream: 100
-  downstream: 100
+  upstream: 50
+  downstream: 10
 
 TTS sequence extraction:
-  upstream: 100
-  downstream: 20
+  upstream: 30
+  downstream: 30
+
+#MEME params
+nmotifsTSS: 3
+nmotifsTTS: 3
