@@ -1,6 +1,6 @@
 rule getGenomeFile:
     input: expand("{fa}.fai",fa=config["fasta file"])
-    output: '{phage}_genome.txt'
+    output: temp('{phage}_genome.txt')
     shell:
         """
             awk -v OFS='\t' {{'print $1,$2'}} {input} > {output}
@@ -9,11 +9,13 @@ rule PosEffRatios:
     input: 
         '{phage}_peak_calling/{phage}_enriched_{ident}.3end.plus.peaks.oracle.narrowPeak.counts.clustered.csv',
         '{phage}_genome.txt',
-        'BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
+        'results/BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
     output: 
-        'TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
+        'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
     params:
         t=config["TTS threshold"]
+    conda:
+        "../envs/env_annotation.yaml"
     shell:
         """
         bedFile=$(bedtools bamtobed -i {input[2]} | sort -k1,1 -k2,2n)
@@ -43,11 +45,13 @@ rule NegEffRatios:
     input: 
         '{phage}_peak_calling/{phage}_enriched_{ident}.3end.minus.peaks.oracle.narrowPeak.counts.clustered.csv',
         '{phage}_genome.txt',
-        'BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
+        'results/BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
     output: 
-        'TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
+        'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
     params:
         t=config["TTS threshold"]
+    conda:
+        "../envs/env_annotation.yaml"
     shell:
         """
         bedFile=$(bedtools bamtobed -i {input[2]} | sort -k1,1 -k2,2n)
@@ -74,34 +78,43 @@ rule NegEffRatios:
         done
         """
 rule PosCoverageDropToBed:
-    input: 'TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
-    output: 'TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed'
+    input: 'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
+    output: temp('results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed')
     params:
         up=config["TTS sequence extraction"]["upstream"],
         down=config["TTS sequence extraction"]["downstream"]
     shell:
         """
-        awk -v up={params.up} -v down={params.down} -v FS='\t' -v OFS='\t' -F ' ' '{{print $1, $2 - up, $2 + down, "TTS_" NR, "+"}}' {input} | uniq > {output}
+        awk -v up={params.up} -v down={params.down} -v FS='\t' -v OFS='\t' -F ' ' '{{print $1, $2 - up, $2 + down, "TTS_" NR,0 , "+"}}' {input} | uniq > {output}
         sed -i 's/\"//g' {output}
         """
 rule NegCoverageDropToBed:
-    input: 'TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
-    output: 'TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed'
+    input: 'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
+    output: temp('results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed')
     params:
         up=config["TTS sequence extraction"]["upstream"],
         down=config["TTS sequence extraction"]["downstream"]
     shell:
         """
-        awk -v up={params.up} -v down={params.down} -v FS='\t' -v OFS='\t' -F ' ' '{{print $1, $2 - down, $2 + up, "TTS_" NR, "-"}}' {input} | uniq > {output}
+        awk -v up={params.up} -v down={params.down} -v FS='\t' -v OFS='\t' -F ' ' '{{print $1, $2 - down, $2 + up, "TTS_" NR,0 , "-"}}' {input} | uniq > {output}
         sed -i 's/\"//g' {output}
+        """
+rule combinePosAndNegBedFilesTTS:
+    input: 'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed', 'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed'
+    output: 'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.bed'
+    shell:
+        """
+        cat {input} > {output}
         """
 rule extractSequencesTTS:
     input: 
-        'TTS_{phage}_{ident}/TTS_{phage}_{ident}.{sign}.bed'
+        'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.bed'
     output:
-        'TTS_{phage}_{ident}/TTS_seq_{phage}_{ident}.{sign}.fa.out'
+        'results/TTS_{phage}_{ident}/TTS_seq_{phage}_{ident}.fa.out'
     params:
         fasta=config["fasta file"]
+    conda:
+        "../envs/env_annotation.yaml"
     shell:
         """
         bedtools getfasta -fi {params.fasta} -bed {input} -fo {output} -s -name 
