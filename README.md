@@ -1,5 +1,5 @@
 # Snakemake pipeline
-## dependencies (link + recommended way to install)
+## dependencies
 The majority of dependencies are automatically installed in its own environments upon running the snakemake pipeline. Some dependencies, however need to be installed manually.
 * snakemake
 * termseq-peaks
