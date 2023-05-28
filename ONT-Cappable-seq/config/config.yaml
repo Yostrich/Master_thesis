@@ -1,0 +1,34 @@
+Phage name: PAK
+fasta file: PAK.fasta
+enriched fastq: PAK_enriched.fastq
+control fastq: PAK_control.fastq
+ID: pooled
+termseq alpha: 0.001
+
+cluster width:
+  TSS: 10
+  TTS: 20
+
+minimum coverage: 
+  enriched:
+    TSS: 5
+    TTS: 30
+  control:
+    TSS: 2
+    TTS: 2
+    
+peak alignment error: 2
+TSS Threshold: 1
+TTS threshold: 0.20
+
+TSS sequence extraction:
+  upstream: 50
+  downstream: 10
+
+TTS sequence extraction:
+  upstream: 30
+  downstream: 30
+
+#MEME params
+nmotifsTSS: 5
+nmotifsTTS: 4

@@ -1,0 +1,12 @@
+channels:
+  - epi2melabs
+  - conda-forge
+  - bioconda
+dependencies:
+- epi2melabs::pychopper
+- pandas=1.5.3
+- cutadapt
+- minimap2
+- samtools
+- samclip
+- bedtools
