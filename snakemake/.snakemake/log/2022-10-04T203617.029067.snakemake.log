@@ -1,6 +1,0 @@
-ValueErrorin line 6 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/mapReads.smk:
-Single '}' encountered in format string
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 2, in <module>
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/mapReads.smk", line 6, in <module>
-  File "/home/yostrich/anaconda3/envs/snakemake/lib/python3.10/string.py", line 165, in vformat
-  File "/home/yostrich/anaconda3/envs/snakemake/lib/python3.10/string.py", line 174, in _vformat

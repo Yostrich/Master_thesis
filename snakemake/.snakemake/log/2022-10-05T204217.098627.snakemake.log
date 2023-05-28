@@ -1,4 +1,0 @@
-TypeErrorin line 53 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk:
-list indices must be integers or slices, not str
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 3, in <module>
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk", line 53, in <module>

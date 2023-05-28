@@ -1,7 +1,0 @@
-Building DAG of jobs...
-MissingInputException in rule createNotebook in line 1 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/notebookStructuralProperties.smk:
-Missing input files for rule createNotebook:
-    output: notebooks/LUZ7_t5.plus.txt
-    wildcards: phage=notebooks/LUZ7, ident=t5, sign=plus
-    affected files:
-        TSS_notebooks/LUZ7_t5/TSS_seq_notebooks/LUZ7_t5.plus.fa.out

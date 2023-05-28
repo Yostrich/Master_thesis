@@ -1,3 +1,0 @@
-SyntaxErrorin line 5 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/determineTranscriptionBoundries.smk:
-Command must be given as string after the shell keyword. (determineTranscriptionBoundries.smk, line 5)
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 2, in <module>

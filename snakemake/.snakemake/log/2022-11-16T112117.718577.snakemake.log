@@ -1,4 +1,0 @@
-SyntaxError:
-Not all output, log and benchmark files of rule createNotebook contain the same wildcards. This is crucial though, in order to avoid that two or more jobs write to the same file.
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 6, in <module>
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/notebookStructuralProperties.smk", line 16, in <module>

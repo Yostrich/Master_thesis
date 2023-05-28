@@ -1,3 +1,0 @@
-NameErrorin line 4 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile:
-name 'phage' is not defined
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 4, in <module>

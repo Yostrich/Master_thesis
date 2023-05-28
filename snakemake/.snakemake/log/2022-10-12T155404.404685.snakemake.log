@@ -1,4 +1,0 @@
-KeyErrorin line 52 of /mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTSS.smk:
-'TSS Threshold'
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/Snakefile", line 3, in <module>
-  File "/mnt/c/Users/danis/Desktop/Thesis/pipeline_snakemake/workflow/rules/annotateTSS.smk", line 52, in <module>
