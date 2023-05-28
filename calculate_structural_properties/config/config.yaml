@@ -1,0 +1,16 @@
+phage name: LUZ7
+ID: pooled
+phage fasta file: LUZ7.fasta
+numberRandomSeq: 1000
+TSS info:
+  fasta: TSS_seq_LUZ7_enriched_pooled.fa.out
+  bp_upstream: 70
+  bp_downstream: 30
+  bp_upstream_profile: 20
+  bp_downstream_profile: 80
+TTS info:
+  fasta: TTS_seq_LUZ7_pooled.fa.out
+  bp_upstream: 50
+  bp_downstream: 50
+  bp_upstream_profile: 20
+  bp_downstream_profile: 80

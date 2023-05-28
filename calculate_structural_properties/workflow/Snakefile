@@ -1,0 +1,6 @@
+configfile: './config/config.yaml'
+include: 'rules/structuralProperties.smk'
+
+rule all:
+    input: expand('results/{phage}_{ident}/{TXS}_{phage}_{ident}_{structprop}.png', TXS=["TSS", "TTS"], phage=config["phage name"], ident=config["ID"], structprop=['stability', 'bendability', 'curvature'])
+    
