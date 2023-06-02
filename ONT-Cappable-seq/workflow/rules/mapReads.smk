@@ -4,8 +4,12 @@ fasta=config["fasta file"]
 # identifying, orienting and removing adapter sequences and poly-A tails using Pychopper and cutadapt.
 rule pychopper:
     output: 
-        expand("results/pychopper_{phage}_{ident}/{phage}_enriched_{ident}_full_length_output.fq", phage=PHAGE, ident=ID),
-        expand("results/pychopper_{phage}_{ident}/{phage}_control_{ident}_full_length_output.fq", phage=PHAGE, ident=ID)
+        expand("results/processed_fastq/pychopper/pychopper_{phage}_{ident}/{phage}_enriched_{ident}_full_length_output.fq", phage=PHAGE, ident=ID),
+        expand("results/processed_fastq/pychopper/pychopper_{phage}_{ident}/{phage}_control_{ident}_full_length_output.fq", phage=PHAGE, ident=ID),
+        expand("results/processed_fastq/pychopper/pychopper_{phage}_{ident}/report_enriched.pdf", phage=PHAGE, ident=ID),
+        expand("results/processed_fastq/pychopper/pychopper_{phage}_{ident}/report_control.pdf", phage=PHAGE, ident=ID),
+        expand("results/processed_fastq/pychopper/pychopper_{phage}_{ident}/statistics_enriched.tsv", phage=PHAGE, ident=ID),
+        expand("results/processed_fastq/pychopper/pychopper_{phage}_{ident}/statistics_control.tsv", phage=PHAGE, ident=ID)
     params:
         enriched=config["enriched fastq"],
         control=config["control fastq"],
@@ -15,14 +19,14 @@ rule pychopper:
         "../envs/env_read_mapping.yaml"
     shell:
         """
-        pychopper -r results/pychopper_{params.phage}_{params.ident}/report_enriched.pdf -S results/pychopper_{params.phage}_{params.ident}/statistics_enriched.tsv {params.enriched} {output[0]}
+        pychopper -r {output[2]} -S {output[4]} {params.enriched} {output[0]}
 
-        pychopper -r results/pychopper_{params.phage}_{params.ident}/report_control.pdf -S results/pychopper_{params.phage}_{params.ident}/statistics_control.tsv {params.control} {output[1]}
+        pychopper -r {output[3]} -S {output[5]} {params.control} {output[1]}
         """
 
 rule cutadapt:
-    input: "results/pychopper_{phage}_{ident}/{phage}_{cond}_{ident}_full_length_output.fq"
-    output: temp("{phage}_{cond}_{ident}_cutadapt_2.fq")
+    input: "results/processed_fastq/pychopper/pychopper_{phage}_{ident}/{phage}_{cond}_{ident}_full_length_output.fq"
+    output: temp("results/processed_fastq/cutadapt/{phage}_{cond}_{ident}_cutadapt_2.fq")
     conda:
         "../envs/env_read_mapping.yaml"
     shell:
@@ -30,8 +34,8 @@ rule cutadapt:
             cutadapt -a A{{10}} -e 1 -j 0 -o {output} {input}
         """
 rule cutadapt2:
-    input: "{phage}_{cond}_{ident}_cutadapt_2.fq"
-    output: temp("{phage}_{cond}_{ident}_cutadapt.fq")
+    input: "results/processed_fastq/cutadapt/{phage}_{cond}_{ident}_cutadapt_2.fq"
+    output: "results/processed_fastq/cutadapt/{phage}_{cond}_{ident}_cutadapt.fq"
     conda:
         "../envs/env_read_mapping.yaml"
     shell:
@@ -40,8 +44,8 @@ rule cutadapt2:
         """
 # Mapping reads onto genome
 rule minimap2:
-    input: "{phage}_{cond}_{ident}_cutadapt.fq"
-    output: temp("{phage}_{cond}_{ident}_minimap.sam")
+    input: "results/processed_fastq/cutadapt/{phage}_{cond}_{ident}_cutadapt.fq"
+    output: temp("results/alignments/{phage}_{cond}_{ident}_minimap.sam")
     conda:
         "../envs/env_read_mapping.yaml"
     params:
@@ -63,8 +67,8 @@ rule fastaIndex:
         """
 # Soft clipping and converting SAM file to sorted BAM file
 rule clipping:
-    input: "{phage}_{cond}_{ident}_minimap.sam", expand("{fa}.fai",fa=fasta)
-    output: temp("{phage}_{cond}_{ident}_clipped.sam")
+    input: "results/alignments/{phage}_{cond}_{ident}_minimap.sam", expand("{fa}.fai",fa=fasta)
+    output: temp("results/alignments/{phage}_{cond}_{ident}_clipped.sam")
     conda:
         "../envs/env_read_mapping.yaml"
     params:
@@ -75,8 +79,8 @@ rule clipping:
         """
 # convert SAM files to BAM files
 rule samToBam:
-    input: "{phage}_{cond}_{ident}_clipped.sam"
-    output: temp("{phage}_{cond}_{ident}.bam")
+    input: "results/alignments/{phage}_{cond}_{ident}_clipped.sam"
+    output: temp("results/alignments/{phage}_{cond}_{ident}.bam")
     conda:
         "../envs/env_read_mapping.yaml"
     shell:
@@ -85,8 +89,8 @@ rule samToBam:
         """
 # sort BAM files
 rule sortBam:
-    input: "{phage}_{cond}_{ident}.bam"
-    output: "results/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam"
+    input: "results/alignments/{phage}_{cond}_{ident}.bam"
+    output: "results/alignments/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam"
     conda:
         "../envs/env_read_mapping.yaml"
     shell:
@@ -95,8 +99,8 @@ rule sortBam:
         """
 #index BAM files
 rule indexSortedBAM:
-    input: "results/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam"
-    output: "results/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam.bai"
+    input: "results/alignments/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam"
+    output: "results/alignments/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam.bai"
     conda:
         "../envs/env_read_mapping.yaml"
     shell:

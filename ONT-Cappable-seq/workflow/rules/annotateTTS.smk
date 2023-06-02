@@ -9,9 +9,9 @@ rule PosEffRatios:
     input: 
         '{phage}_peak_calling/{phage}_enriched_{ident}.3end.plus.peaks.oracle.narrowPeak.counts.clustered.csv',
         '{phage}_genome.txt',
-        'results/BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
+        'results/alignments/BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
     output: 
-        'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
+        'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
     params:
         t=config["TTS threshold"]
     conda:
@@ -46,9 +46,9 @@ rule NegEffRatios:
     input: 
         '{phage}_peak_calling/{phage}_enriched_{ident}.3end.minus.peaks.oracle.narrowPeak.counts.clustered.csv',
         '{phage}_genome.txt',
-        'results/BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
+        'results/alignments/BAM_files_{phage}/{phage}_enriched_{ident}.sorted.bam'
     output: 
-        'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
+        'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
     params:
         t=config["TTS threshold"]
     conda:
@@ -80,8 +80,8 @@ rule NegEffRatios:
         done
         """
 rule PosCoverageDropToBed:
-    input: 'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
-    output: temp('results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed')
+    input: 'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.plus.drop.coverage'
+    output: temp('results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed')
     params:
         up=config["TTS sequence extraction"]["upstream"],
         down=config["TTS sequence extraction"]["downstream"]
@@ -91,8 +91,8 @@ rule PosCoverageDropToBed:
         sed -i 's/\"//g' {output}
         """
 rule NegCoverageDropToBed:
-    input: 'results/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
-    output: temp('results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed')
+    input: 'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/eff_ratios_{phage}_{ident}.minus.drop.coverage'
+    output: temp('results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed')
     params:
         up=config["TTS sequence extraction"]["upstream"],
         down=config["TTS sequence extraction"]["downstream"]
@@ -102,17 +102,17 @@ rule NegCoverageDropToBed:
         sed -i 's/\"//g' {output}
         """
 rule combinePosAndNegBedFilesTTS:
-    input: 'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed', 'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed'
-    output: 'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.bed'
+    input: 'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_{phage}_{ident}.plus.bed', 'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_{phage}_{ident}.minus.bed'
+    output: 'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_{phage}_{ident}.bed'
     shell:
         """
         cat {input} > {output}
         """
 rule extractSequencesTTS:
     input: 
-        'results/TTS_{phage}_{ident}/TTS_{phage}_{ident}.bed'
+        'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_{phage}_{ident}.bed'
     output:
-        'results/TTS_{phage}_{ident}/TTS_seq_{phage}_{ident}.fa.out'
+        'results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_seq_{phage}_{ident}.fa.out'
     params:
         fasta=config["fasta file"]
     conda:

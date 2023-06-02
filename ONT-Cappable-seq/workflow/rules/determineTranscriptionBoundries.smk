@@ -3,7 +3,7 @@ numToTXS={"5": "TSS", "3": "TTS"}
 
 # creates genome coverage file as input for the termseq peak calling
 rule createGenomecov:
-    input: 'results/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam'
+    input: 'results/alignments/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam'
     output: temp('{phage}_peak_calling/{phage}_{cond}_{ident}.{num}end.{sign}.bedgraph')
     params:
         symb=lambda x: signToSymbol[x.sign]
@@ -44,7 +44,7 @@ rule combineCovAndPeaks:
         """
 # Adds total number of reads to the peaks coverage information.
 rule addTotalReadsToCounts:
-    input: '{phage}_peak_calling/{prefix}.{num}end.{sign}.peaks.oracle.narrowPeak.counts', 'results/BAM_files_{phage}/{prefix}.sorted.bam'
+    input: '{phage}_peak_calling/{prefix}.{num}end.{sign}.peaks.oracle.narrowPeak.counts', 'results/alignments/BAM_files_{phage}/{prefix}.sorted.bam'
     output: temp('{phage}_peak_calling/{prefix}.{num}end.{sign}.peaks.oracle.narrowPeak.counts.withTR')
     conda:
         "../envs/env_transcription_boundaries.yaml"

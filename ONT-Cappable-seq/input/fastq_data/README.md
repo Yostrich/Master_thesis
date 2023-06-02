@@ -1,0 +1,1 @@
+Input directory for fastq files

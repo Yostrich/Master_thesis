@@ -1,7 +1,7 @@
-Phage name: PAK
-fasta file: PAK.fasta
-enriched fastq: PAK_enriched.fastq
-control fastq: PAK_control.fastq
+Phage name: 14-1
+fasta file: input/genome_data/14-1.fasta
+enriched fastq: input/fastq_data/phage_14-1_enriched.fastq
+control fastq: input/fastq_data/phage_14-1_control.fastq
 ID: pooled
 termseq alpha: 0.001
 

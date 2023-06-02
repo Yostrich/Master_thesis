@@ -3,9 +3,12 @@ include: 'rules/mapReads.smk'
 include: 'rules/annotateTSS.smk'
 include: 'rules/annotateTTS.smk'
 include: 'rules/determineTranscriptionBoundries.smk'
+include: 'rules/findMotifs.smk'
 rule all:
     input: 
-        expand("results/TSS_{phage}_{ident}/TSS_seq_{phage}_enriched_{ident}.fa.out", phage=config["Phage name"], ident=config["ID"]),
-        expand("results/TTS_{phage}_{ident}/TTS_seq_{phage}_{ident}.fa.out", phage=config["Phage name"], ident=config["ID"]),
-        expand('results/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam.bai', phage=config["Phage name"], ident=config["ID"], cond=["enriched", "control"])
+        expand("results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/TSS_seq_{phage}_enriched_{ident}.fa.out", phage=config["Phage name"], ident=config["ID"]),
+        expand("results/transcript_boundaries/TTS_{phage}/TTS_{phage}_{ident}/TTS_seq_{phage}_{ident}.fa.out", phage=config["Phage name"], ident=config["ID"]),
+        expand("results/MEME/TSS_{phage}_{ident}/meme_out/meme.html", phage=config["Phage name"], ident=config["ID"]),
+        expand("results/MEME/TTS_{phage}_{ident}/meme_out/meme.html", phage=config["Phage name"], ident=config["ID"]),
+        expand('results/alignments/BAM_files_{phage}/{phage}_{cond}_{ident}.sorted.bam.bai', phage=config["Phage name"], ident=config["ID"], cond=["enriched", "control"])
 

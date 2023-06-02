@@ -52,7 +52,7 @@ rule getInformationFromOverlappingPeaks:
         '{phage}_peak_calling/{phage}_control_{ident}.5end.{sign}.peaks.oracle.narrowPeak.counts.clustered.csv',
         '{phage}_{ident}_all_overlapping_peaks.{sign}.csv'
     output:
-        'results/TSS_{phage}_{ident}/enr_ratios_{phage}_{ident}.{sign}.csv'
+        'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/enr_ratios_{phage}_{ident}.{sign}.csv'
     params:
         threshold=config["TSS Threshold"]
     shell:
@@ -68,10 +68,10 @@ rule getInformationFromOverlappingPeaks:
         """
  # write information to BED files   
 rule PosPeaksToBedFile:
-    input: 'results/TSS_{phage}_{ident}/enr_ratios_{phage}_{ident}.plus.csv'
+    input: 'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/enr_ratios_{phage}_{ident}.plus.csv'
     output: 
-        temp('results/TSS_{phage}_{ident}/{phage}_enriched_{ident}_peaks.plus.bed'),
-        temp('results/TSS_{phage}_{ident}/{phage}_control_{ident}_peaks.plus.bed')
+        temp('results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_enriched_{ident}_peaks.plus.bed'),
+        temp('results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_control_{ident}_peaks.plus.bed')
     params:
         up=config["TSS sequence extraction"]["upstream"],
         down=config["TSS sequence extraction"]["downstream"]
@@ -83,10 +83,10 @@ rule PosPeaksToBedFile:
         sed -i 's/\"//g' {output[1]}
         """
 rule NegPeaksToBedFile:
-    input: 'results/TSS_{phage}_{ident}/enr_ratios_{phage}_{ident}.minus.csv'
+    input: 'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/enr_ratios_{phage}_{ident}.minus.csv'
     output: 
-        temp('results/TSS_{phage}_{ident}/{phage}_enriched_{ident}_peaks.minus.bed'),
-        temp('results/TSS_{phage}_{ident}/{phage}_control_{ident}_peaks.minus.bed')
+        temp('results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_enriched_{ident}_peaks.minus.bed'),
+        temp('results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_control_{ident}_peaks.minus.bed')
     params:
         up=config["TSS sequence extraction"]["upstream"],
         down=config["TSS sequence extraction"]["downstream"]
@@ -98,8 +98,8 @@ rule NegPeaksToBedFile:
         sed -i 's/\"//g' {output[1]}
         """
 rule combinePosAndNegBedFiles:
-    input: 'results/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.plus.bed', 'results/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.minus.bed'
-    output: 'results/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.bed'
+    input: 'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.plus.bed', 'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.minus.bed'
+    output: 'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.bed'
     shell:
         """
         cat {input} > {output}
@@ -107,9 +107,9 @@ rule combinePosAndNegBedFiles:
 # extract sequences based on BED files
 rule extractSequencesTSS:
     input: 
-        'results/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.bed'
+        'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/{phage}_{cond}_{ident}_peaks.bed'
     output:
-        'results/TSS_{phage}_{ident}/TSS_seq_{phage}_{cond}_{ident}.fa.out'
+        'results/transcript_boundaries/TSS_{phage}/TSS_{phage}_{ident}/TSS_seq_{phage}_{cond}_{ident}.fa.out'
     params:
         fasta=config["fasta file"]
     conda:
